@@ -1,0 +1,370 @@
+.rv3Navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  background: rgba(247, 250, 249, 0.94);
+  border-bottom: 1px solid rgba(221, 233, 230, 0.9);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.rv3NavInner {
+  width: min(100% - 40px, 1280px);
+  min-height: 82px;
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.rv3Brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  flex-shrink: 0;
+}
+
+.rv3BrandIcon {
+  position: relative;
+  width: 47px;
+  height: 47px;
+  display: grid;
+  place-items: center;
+  color: #ffffff;
+  background: #123c46;
+  border-radius: 15px;
+  box-shadow: 0 7px 18px rgba(18, 60, 70, 0.16);
+  transition:
+    transform 250ms ease,
+    background 250ms ease;
+}
+
+.rv3Brand:hover .rv3BrandIcon {
+  transform: rotate(-5deg) scale(1.04);
+  background: #247c7b;
+}
+
+.rv3BrandPulse {
+  position: absolute;
+  right: -5px;
+  bottom: -4px;
+  width: 22px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  color: #123c46;
+  background: #d8ece8;
+  border: 2px solid #f7faf9;
+  border-radius: 50%;
+}
+
+.rv3BrandText {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.rv3BrandName {
+  color: #123c46;
+  font-family: "Lora", serif;
+  font-size: 27px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -1px;
+}
+
+.rv3BrandTagline {
+  color: #687a7d;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 1.05px;
+}
+
+.rv3DesktopNav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(12px, 1.7vw, 25px);
+}
+
+.rv3NavLink {
+  position: relative;
+  padding-block: 10px;
+  color: #526568;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: color 200ms ease;
+}
+
+.rv3NavLink::after {
+  position: absolute;
+  right: 0;
+  bottom: 3px;
+  left: 0;
+  height: 2px;
+  content: "";
+  background: #247c7b;
+  border-radius: 4px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 220ms ease;
+}
+
+.rv3NavLink:hover,
+.rv3NavLinkActive {
+  color: #123c46;
+}
+
+.rv3NavLink:hover::after,
+.rv3NavLinkActive::after {
+  transform: scaleX(1);
+}
+
+.rv3NavActions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.rv3NavAppointment {
+  min-height: 46px;
+  padding: 10px 17px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  color: #ffffff;
+  background: #123c46;
+  border: 1px solid #123c46;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 6px 16px rgba(18, 60, 70, 0.12);
+  transition:
+    background 220ms ease,
+    border-color 220ms ease,
+    transform 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.rv3NavAppointment:hover {
+  color: #ffffff;
+  background: #247c7b;
+  border-color: #247c7b;
+  transform: translateY(-2px);
+  box-shadow: 0 9px 22px rgba(18, 60, 70, 0.18);
+}
+
+.rv3NavAppointment svg {
+  transition: transform 220ms ease;
+}
+
+.rv3NavAppointment:hover svg {
+  transform: translate(2px, -2px);
+}
+
+.rv3MenuToggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  color: #123c46;
+  background: #ffffff;
+  border: 1px solid #dde9e6;
+  border-radius: 13px;
+  transition:
+    background 200ms ease,
+    border-color 200ms ease;
+}
+
+.rv3MenuToggle:hover {
+  background: #d8ece8;
+  border-color: #247c7b;
+}
+
+.rv3MobileNav {
+  display: none;
+}
+
+.rv3MobileNavLink {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 11px 14px;
+  color: #526568;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  transition:
+    color 200ms ease,
+    background 200ms ease,
+    border-color 200ms ease;
+}
+
+.rv3MobileNavLink:hover,
+.rv3MobileNavLinkActive {
+  color: #123c46;
+  background: #eaf4f1;
+  border-color: #d8ece8;
+}
+
+.rv3MobileCtaWrap {
+  padding-top: 10px;
+}
+
+.rv3MobileAppointment {
+  width: 100%;
+}
+
+.rv3MobileNote {
+  margin-top: 12px;
+  color: #687a7d;
+  font-size: 12px;
+  text-align: center;
+}
+
+@media (max-width: 1120px) {
+  .rv3NavInner {
+    gap: 16px;
+  }
+
+  .rv3DesktopNav {
+    gap: 13px;
+  }
+
+  .rv3BrandName {
+    font-size: 25px;
+  }
+
+  .rv3NavLink {
+    font-size: 12px;
+  }
+
+  .rv3NavAppointment {
+    padding-inline: 13px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 940px) {
+  .rv3NavInner {
+    min-height: 76px;
+  }
+
+  .rv3DesktopNav {
+    display: none;
+  }
+
+  .rv3NavActions {
+    margin-left: auto;
+  }
+
+  .rv3MenuToggle {
+    display: inline-flex;
+  }
+
+  .rv3MobileNav {
+    width: min(100% - 32px, 600px);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin: 0 auto 16px;
+    padding: 15px;
+    background: #ffffff;
+    border: 1px solid #dde9e6;
+    border-radius: 20px;
+    box-shadow: 0 18px 40px rgba(18, 60, 70, 0.1);
+  }
+}
+
+@media (max-width: 520px) {
+  .rv3NavInner {
+    width: calc(100% - 28px);
+    min-height: 70px;
+    gap: 8px;
+  }
+
+  .rv3Brand {
+    gap: 8px;
+  }
+
+  .rv3BrandIcon {
+    width: 41px;
+    height: 41px;
+    border-radius: 13px;
+  }
+
+  .rv3BrandIcon > svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .rv3BrandName {
+    font-size: 23px;
+  }
+
+  .rv3BrandTagline {
+    font-size: 9px;
+    letter-spacing: 0.65px;
+  }
+
+  .rv3NavActions {
+    gap: 7px;
+  }
+
+  .rv3NavActions > .rv3NavAppointment {
+    min-height: 42px;
+    padding: 9px 11px;
+    gap: 4px;
+    font-size: 12px;
+  }
+
+  .rv3NavActions > .rv3NavAppointment svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  .rv3MenuToggle {
+    width: 41px;
+    height: 41px;
+    flex-shrink: 0;
+  }
+
+  .rv3MobileNav {
+    width: calc(100% - 28px);
+  }
+}
+
+@media (max-width: 370px) {
+  .rv3BrandTagline {
+    display: none;
+  }
+
+  .rv3BrandName {
+    font-size: 21px;
+  }
+
+  .rv3NavActions > .rv3NavAppointment {
+    padding-inline: 9px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rv3Navbar *,
+  .rv3Navbar *::before,
+  .rv3Navbar *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,459 @@
+
+.rehabAbout {
+  overflow: hidden;
+  background: #f7f1e8;
+  color: #353535;
+}
+
+.rehabAbout img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.rehabAbout .rhAboutIntro,
+.rehabAbout .rhAboutStory,
+.rehabAbout .rhAboutMission,
+.rehabAbout .rhAboutValues,
+.rehabAbout .rhAboutPrinciples {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.rehabAbout .rhAboutIntroGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 30px;
+}
+
+.rehabAbout .rhAboutIntroVisual {
+  position: relative;
+  min-width: 0;
+  padding: 0 0 20px 20px;
+}
+
+.rehabAbout .rhAboutImageMain {
+  height: 430px;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #e8ded3;
+}
+
+.rehabAbout .rhAboutImageMain img {
+  transition: transform 500ms ease;
+}
+
+.rehabAbout .rhAboutImageMain:hover img {
+  transform: scale(1.035);
+}
+
+.rehabAbout .rhAboutImageNote {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 270px;
+  padding: 16px;
+  border: 1px solid #e8ded3;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 12px 30px rgb(53 53 53 / 9%);
+}
+
+.rehabAbout .rhAboutNoteIcon {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  place-items: center;
+  border-radius: 12px;
+  background: #f7f1e8;
+  color: #b85c38;
+  font-size: 23px;
+}
+
+.rehabAbout .rhAboutImageNote strong {
+  display: block;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.rehabAbout .rhAboutImageNote p {
+  margin: 3px 0 0;
+  color: #746b64;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.rehabAbout .rhAboutIntroContent {
+  max-width: 540px;
+}
+
+.rehabAbout .rhAboutIntroContent h2,
+.rehabAbout .rhAboutStoryHeading h2,
+.rehabAbout .rhAboutMissionCard h2,
+.rehabAbout .rhAboutSectionHeading h2,
+.rehabAbout .rhAboutPrinciplesIntro h2 {
+  margin: 12px 0 16px;
+  font-family: "Lora", Georgia, serif;
+  font-size: clamp(28px, 3.2vw, 44px);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.8px;
+}
+
+.rehabAbout .rhAboutIntroContent h2 em,
+.rehabAbout .rhAboutStoryHeading h2 em,
+.rehabAbout .rhAboutMissionCard h2 em,
+.rehabAbout .rhAboutSectionHeading h2 em,
+.rehabAbout .rhAboutPrinciplesIntro h2 em {
+  color: #b85c38;
+  font-weight: 500;
+}
+
+.rehabAbout .rhAboutIntroContent > p,
+.rehabAbout .rhAboutStoryContent > p,
+.rehabAbout .rhAboutMissionCard > p,
+.rehabAbout .rhAboutSectionHeading > p,
+.rehabAbout .rhAboutPrinciplesIntro > p {
+  color: #746b64;
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+.rehabAbout .rhAboutIntroContent > p {
+  margin: 0 0 12px;
+}
+
+.rehabAbout .rhAboutIntroContent .rhButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+  text-decoration: none;
+}
+
+.rehabAbout .rhAboutStory {
+  background: #fff;
+}
+
+.rehabAbout .rhAboutStoryGrid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.rehabAbout .rhAboutStoryHeading {
+  max-width: 430px;
+}
+
+.rehabAbout .rhAboutStoryContent > p {
+  margin: 0 0 12px;
+}
+
+.rehabAbout .rhAboutStoryQuote {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  padding: 16px;
+  border-left: 3px solid #b85c38;
+  border-radius: 0 12px 12px 0;
+  background: #f7f1e8;
+}
+
+.rehabAbout .rhAboutStoryQuote > span {
+  color: #b85c38;
+  font-family: Georgia, serif;
+  font-size: 38px;
+  line-height: 1;
+}
+
+.rehabAbout .rhAboutStoryQuote p {
+  margin: 0;
+  color: #353535;
+  font-family: "Lora", Georgia, serif;
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.rehabAbout .rhAboutMissionCard {
+  position: relative;
+  overflow: hidden;
+  padding: 24px;
+  border: 1px solid #e8ded3;
+  border-radius: 16px;
+  background: #efe2d4;
+}
+
+.rehabAbout .rhAboutMissionTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.rehabAbout .rhAboutMissionMark {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border-radius: 50%;
+  background: #fff;
+  color: #b85c38;
+  font-size: 23px;
+}
+
+.rehabAbout .rhAboutMissionCard h2 {
+  max-width: 700px;
+}
+
+.rehabAbout .rhAboutMissionCard > p {
+  max-width: 760px;
+  margin: 0;
+}
+
+.rehabAbout .rhAboutSectionHeading {
+  max-width: 620px;
+  margin: 0 auto 24px;
+  text-align: center;
+}
+
+.rehabAbout .rhAboutSectionHeading h2 {
+  margin-bottom: 10px;
+}
+
+.rehabAbout .rhAboutSectionHeading > p {
+  margin: 0;
+}
+
+.rehabAbout .rhAboutValuesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.rehabAbout .rhAboutValueCard {
+  display: flex;
+  min-height: 220px;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+  border: 1px solid #e8ded3;
+  border-radius: 16px;
+  background: #fff;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.rehabAbout .rhAboutValueCard:hover {
+  transform: translateY(-4px);
+  border-color: #dfa58b;
+  box-shadow: 0 12px 26px rgb(53 53 53 / 6%);
+}
+
+.rehabAbout .rhAboutValueTop {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.rehabAbout .rhAboutValueNumber {
+  color: #746b64;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.rehabAbout .rhAboutValueIcon {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border-radius: 12px;
+  background: #f7f1e8;
+  color: #b85c38;
+  font-size: 23px;
+}
+
+.rehabAbout .rhAboutValueCard h3,
+.rehabAbout .rhAboutPrinciple h3 {
+  margin: 0 0 8px;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.rehabAbout .rhAboutValueCard p,
+.rehabAbout .rhAboutPrinciple p {
+  margin: 0;
+  color: #746b64;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.rehabAbout .rhAboutValueLine {
+  width: 38px;
+  height: 3px;
+  margin-top: auto;
+  padding-top: 0;
+  transform: translateY(-1px);
+  border-radius: 10px;
+  background: #b85c38;
+}
+
+.rehabAbout .rhAboutPrinciples {
+  background: #fff;
+}
+
+.rehabAbout .rhAboutPrinciplesGrid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.rehabAbout .rhAboutPrinciplesIntro {
+  max-width: 430px;
+}
+
+.rehabAbout .rhAboutPrinciplesIntro > p {
+  margin: 0;
+}
+
+.rehabAbout .rhAboutPrinciplesList {
+  display: grid;
+  gap: 0;
+}
+
+.rehabAbout .rhAboutPrinciple {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  gap: 14px;
+  padding: 16px 0;
+  border-bottom: 1px solid #e8ded3;
+}
+
+.rehabAbout .rhAboutPrinciple:first-child {
+  padding-top: 0;
+}
+
+.rehabAbout .rhAboutPrinciple:last-child {
+  border-bottom: 0;
+}
+
+.rehabAbout .rhAboutPrincipleNumber {
+  color: #b85c38;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.rehabAbout .rhAboutPrinciple h3 {
+  margin-top: 0;
+}
+
+@media (min-width: 1200px) {
+  .rehabAbout .rhAboutImageMain {
+    height: 460px;
+  }
+}
+
+@media (max-width: 900px) {
+  .rehabAbout .rhAboutIntroGrid,
+  .rehabAbout .rhAboutStoryGrid,
+  .rehabAbout .rhAboutPrinciplesGrid {
+    gap: 24px;
+  }
+
+  .rehabAbout .rhAboutImageMain {
+    height: 360px;
+  }
+
+  .rehabAbout .rhAboutIntroContent h2,
+  .rehabAbout .rhAboutStoryHeading h2,
+  .rehabAbout .rhAboutMissionCard h2,
+  .rehabAbout .rhAboutSectionHeading h2,
+  .rehabAbout .rhAboutPrinciplesIntro h2 {
+    font-size: clamp(27px, 4vw, 36px);
+  }
+
+  .rehabAbout .rhAboutValuesGrid {
+    gap: 12px;
+  }
+
+  .rehabAbout .rhAboutValueCard {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .rehabAbout .rhAboutIntroGrid,
+  .rehabAbout .rhAboutStoryGrid,
+  .rehabAbout .rhAboutPrinciplesGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .rehabAbout .rhAboutIntroVisual {
+    padding-left: 0;
+    padding-bottom: 18px;
+  }
+
+  .rehabAbout .rhAboutImageMain {
+    height: 300px;
+  }
+
+  .rehabAbout .rhAboutImageNote {
+    right: 8px;
+    max-width: 245px;
+    padding: 12px;
+  }
+
+  .rehabAbout .rhAboutIntroContent h2,
+  .rehabAbout .rhAboutStoryHeading h2,
+  .rehabAbout .rhAboutMissionCard h2,
+  .rehabAbout .rhAboutSectionHeading h2,
+  .rehabAbout .rhAboutPrinciplesIntro h2 {
+    font-size: 29px;
+    letter-spacing: -0.5px;
+  }
+
+  .rehabAbout .rhAboutMissionCard {
+    padding: 20px;
+  }
+
+  .rehabAbout .rhAboutValuesGrid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .rehabAbout .rhAboutValueCard {
+    min-height: 0;
+    padding: 18px;
+  }
+
+  .rehabAbout .rhAboutValueLine {
+    margin-top: 16px;
+  }
+
+  .rehabAbout .rhAboutPrinciple {
+    grid-template-columns: 32px minmax(0, 1fr);
+    gap: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rehabAbout .rhAboutImageMain img,
+  .rehabAbout .rhAboutValueCard {
+    transition: none;
+  }
+}

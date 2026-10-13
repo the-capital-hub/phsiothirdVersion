@@ -1,0 +1,575 @@
+.rehabTeamPage {
+  --rt-primary: #b85c38;
+  --rt-primary-hover: #984729;
+  --rt-ivory: #f7f1e8;
+  --rt-clay: #dfa58b;
+  --rt-charcoal: #353535;
+  --rt-muted: #746b64;
+  --rt-border: #e8ded3;
+  --rt-white: #ffffff;
+  color: var(--rt-charcoal);
+  background: var(--rt-white);
+  font-family: "Inter", sans-serif;
+  overflow: hidden;
+}
+
+.rehabTeamPage *,
+.rehabTeamPage *::before,
+.rehabTeamPage *::after {
+  box-sizing: border-box;
+}
+
+.rehabTeamPage h1,
+.rehabTeamPage h2,
+.rehabTeamPage h3 {
+  font-family: "Lora", Georgia, serif;
+  font-weight: 500;
+  letter-spacing: -0.035em;
+}
+
+.rehabTeamPage p {
+  color: var(--rt-muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.rehabTeamPage img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.rtContainer {
+  width: min(1180px, calc(100% - 48px));
+  margin: 0 auto;
+}
+
+.rtSection {
+  padding: 20px 0;
+}
+
+.rtEyebrow {
+  display: inline-block;
+  color: var(--rt-primary);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  line-height: 1.6;
+  text-transform: uppercase;
+}
+
+.rtSectionHeading {
+  max-width: 700px;
+  margin: 0 auto 20px;
+  text-align: center;
+}
+
+.rtSectionHeading h2,
+.rtIntroCopy h2,
+.rtCommitmentCopy h2 {
+  margin: 10px 0 12px;
+  color: var(--rt-charcoal);
+  font-size: clamp(29px, 3.5vw, 43px);
+  line-height: 1.2;
+}
+
+.rtSectionHeading h2 span,
+.rtIntroCopy h2 span,
+.rtCommitmentCopy h2 span {
+  color: var(--rt-primary);
+}
+
+.rtSectionHeading > p {
+  max-width: 570px;
+  margin: 0 auto;
+}
+
+.rtTextLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--rt-primary);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.rtTextLink svg {
+  transition: transform 0.25s ease;
+}
+
+.rtTextLink:hover svg {
+  transform: translate(3px, -3px);
+}
+
+/* Introduction */
+
+.rtIntroduction {
+  background: var(--rt-white);
+}
+
+.rtIntroductionGrid {
+  display: grid;
+  grid-template-columns: 1fr 0.9fr;
+  align-items: center;
+  gap: 46px;
+}
+
+.rtIntroCopy {
+  padding: 10px 0;
+}
+
+.rtIntroCopy h2 {
+  max-width: 570px;
+}
+
+.rtIntroCopy > p {
+  max-width: 550px;
+  margin: 0 0 13px;
+}
+
+.rtIntroCopy .rtTextLink {
+  margin-top: 5px;
+}
+
+.rtIntroVisual {
+  position: relative;
+  min-width: 0;
+  height: 370px;
+  padding: 0 0 20px 20px;
+}
+
+.rtIntroVisual::before {
+  position: absolute;
+  top: 20px;
+  right: 0;
+  bottom: 0;
+  left: 40px;
+  z-index: 0;
+  border-radius: 7px;
+  background: var(--rt-ivory);
+  content: "";
+}
+
+.rtIntroVisual > img {
+  position: relative;
+  z-index: 1;
+  border-radius: 6px;
+  object-position: center;
+}
+
+.rtImageCaption {
+  position: absolute;
+  right: 12px;
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: calc(100% - 30px);
+  padding: 13px 15px;
+  border: 1px solid var(--rt-border);
+  border-radius: 5px;
+  background: var(--rt-white);
+  box-shadow: 0 10px 28px rgb(53 53 53 / 8%);
+  color: var(--rt-primary);
+}
+
+.rtImageCaption strong,
+.rtImageCaption span {
+  display: block;
+}
+
+.rtImageCaption strong {
+  color: var(--rt-charcoal);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.rtImageCaption span {
+  margin-top: 3px;
+  color: var(--rt-muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* Team members */
+
+.rtMembers {
+  background: var(--rt-ivory);
+}
+
+.rtMemberGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.rtMemberCard {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--rt-border);
+  border-radius: 6px;
+  background: var(--rt-white);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.rtMemberCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 32px rgb(53 53 53 / 8%);
+}
+
+.rtMemberImage {
+  position: relative;
+  height: 285px;
+  overflow: hidden;
+  background: #eee3d9;
+}
+
+.rtMemberImage > img {
+  object-position: center 25%;
+  transition: transform 0.55s ease;
+}
+
+.rtMemberCard:hover .rtMemberImage > img {
+  transform: scale(1.04);
+}
+
+.rtMemberNumber {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border-radius: 4px;
+  background: var(--rt-white);
+  color: var(--rt-primary);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.rtMemberInfo {
+  padding: 17px;
+}
+
+.rtMemberRole {
+  display: inline-block;
+  margin-bottom: 7px;
+  color: var(--rt-primary);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.rtMemberInfo h3 {
+  margin: 0 0 12px;
+  font-size: 22px;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.rtQualification,
+.rtMemberSpecialty {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0;
+  font-size: 12px !important;
+  line-height: 1.7 !important;
+}
+
+.rtQualification {
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--rt-border);
+}
+
+.rtQualification svg,
+.rtMemberSpecialty svg {
+  flex: 0 0 16px;
+  margin-top: 3px;
+  color: var(--rt-primary);
+}
+
+.rtMemberSpecialty {
+  margin-top: 12px;
+}
+
+.rtProfileNote {
+  margin: 16px 0 0;
+  font-size: 12px !important;
+  text-align: center;
+}
+
+/* Team values */
+
+.rtApproach {
+  background: var(--rt-white);
+}
+
+.rtValuesGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.rtValueCard {
+  padding: 18px;
+  border: 1px solid var(--rt-border);
+  border-radius: 6px;
+  background: #fffdfb;
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.rtValueCard:hover {
+  transform: translateY(-3px);
+  border-color: var(--rt-clay);
+}
+
+.rtValueIcon {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 15px;
+  place-items: center;
+  border-radius: 5px;
+  background: var(--rt-ivory);
+  color: var(--rt-primary);
+}
+
+.rtValueCard h3 {
+  margin: 0 0 8px;
+  font-size: 19px;
+  line-height: 1.4;
+}
+
+.rtValueCard p {
+  margin: 0;
+  font-size: 13px;
+}
+
+/* Commitment */
+
+.rtCommitment {
+  background: var(--rt-ivory);
+}
+
+.rtCommitmentGrid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  align-items: center;
+  gap: 44px;
+}
+
+.rtCommitmentVisual {
+  height: 360px;
+  overflow: hidden;
+  border-radius: 6px;
+}
+
+.rtCommitmentVisual img {
+  transition: transform 0.55s ease;
+}
+
+.rtCommitmentVisual:hover img {
+  transform: scale(1.035);
+}
+
+.rtCommitmentCopy h2 {
+  max-width: 560px;
+}
+
+.rtCommitmentCopy > p {
+  margin: 0 0 17px;
+}
+
+.rtCommitmentPoints {
+  display: grid;
+  gap: 13px;
+  margin: 19px 0;
+}
+
+.rtCommitmentPoints > div {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.rtCommitmentPoints svg {
+  flex: 0 0 21px;
+  margin-top: 1px;
+  color: var(--rt-primary);
+}
+
+.rtButton {
+  display: inline-flex;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 12px 17px;
+  border-radius: 4px;
+  background: var(--rt-primary);
+  color: var(--rt-white);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease;
+}
+
+.rtButton:hover {
+  transform: translateY(-2px);
+  background: var(--rt-primary-hover);
+  color: var(--rt-white);
+}
+
+/* Responsive layout */
+
+@media (max-width: 1024px) {
+  .rtContainer {
+    width: min(100% - 36px, 900px);
+  }
+
+  .rtIntroductionGrid,
+  .rtCommitmentGrid {
+    gap: 27px;
+  }
+
+  .rtValuesGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .rtMemberImage {
+    height: 240px;
+  }
+
+  .rtMemberInfo {
+    padding: 14px;
+  }
+
+  .rtMemberInfo h3 {
+    font-size: 20px;
+  }
+
+  .rtIntroVisual,
+  .rtCommitmentVisual {
+    height: 320px;
+  }
+}
+
+@media (max-width: 700px) {
+  .rtContainer {
+    width: calc(100% - 30px);
+  }
+
+  .rtSection {
+    padding: 18px 0;
+  }
+
+  .rtSectionHeading {
+    margin-bottom: 18px;
+    text-align: left;
+  }
+
+  .rtSectionHeading h2,
+  .rtIntroCopy h2,
+  .rtCommitmentCopy h2 {
+    font-size: clamp(28px, 7vw, 36px);
+  }
+
+  .rtSectionHeading > p {
+    margin-left: 0;
+  }
+
+  .rtIntroductionGrid,
+  .rtCommitmentGrid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+
+  .rtIntroCopy,
+  .rtCommitmentCopy {
+    padding: 0;
+  }
+
+  .rtIntroVisual {
+    height: 280px;
+    padding-left: 10px;
+  }
+
+  .rtIntroVisual::before {
+    top: 12px;
+    left: 20px;
+  }
+
+  .rtImageCaption {
+    right: 8px;
+    max-width: calc(100% - 22px);
+    padding: 10px;
+  }
+
+  .rtMemberGrid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 15px;
+  }
+
+  .rtMemberImage {
+    height: 300px;
+  }
+
+  .rtMemberInfo {
+    padding: 16px;
+  }
+
+  .rtValuesGrid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .rtValueCard {
+    display: grid;
+    grid-template-columns: 45px minmax(0, 1fr);
+    column-gap: 12px;
+    padding: 15px;
+  }
+
+  .rtValueIcon {
+    grid-row: span 2;
+    width: 43px;
+    height: 43px;
+    margin: 0;
+  }
+
+  .rtValueCard h3 {
+    margin-bottom: 5px;
+  }
+
+  .rtCommitmentVisual {
+    height: 270px;
+  }
+
+  .rtProfileNote {
+    text-align: left;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rehabTeamPage *,
+  .rehabTeamPage *::before,
+  .rehabTeamPage *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
