@@ -4,400 +4,599 @@ import { motion, useReducedMotion } from "framer-motion";
 import {
   CalendarDays,
   Clock3,
+  MapPin,
+  Video,
   UserRound,
   Phone,
   Mail,
   HeartPulse,
-  MessageCircle,
   CheckCircle2,
-  ArrowRight,
-  ShieldCheck,
+  MessageCircle,
+  ArrowUpRight,
+  ClipboardCheck,
 } from "lucide-react";
 
-
-import "./Appointment.css";
 import HeroSection from "../../components/HeroSection/HeroSection";
 import CTASection from "../../components/CTASection/CTASection";
+import "./Appointment.css";
 
-const initialForm = {
-  fullName: "",
-  phone: "",
-  email: "",
-  concern: "",
-  appointmentDate: "",
-  preferredTime: "",
-  message: "",
+const WHATSAPP_NUMBER = "919999999999";
+
+const getLocalDate = () => {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, "0");
+  const day = String(today.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
 };
 
-const concerns = [
-  "Back Pain",
-  "Neck Pain",
-  "Shoulder Pain",
-  "Knee Pain",
-  "Sports Injury",
-  "Post Surgery Recovery",
-  "Muscle and Joint Stiffness",
-  "Balance and Mobility",
-  "Other Concern",
-];
-
-const timeSlots = [
-  "Morning",
-  "Afternoon",
-  "Evening",
-];
-
-export default function Appointment() {
+const Appointment = () => {
   const reduceMotion = useReducedMotion();
-  const [form, setForm] = useState(initialForm);
-  const [submitted, setSubmitted] = useState(false);
 
-  const today = new Date();
-  const minDate = [
-    today.getFullYear(),
-    String(today.getMonth() + 1).padStart(2, "0"),
-    String(today.getDate()).padStart(2, "0"),
-  ].join("-");
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    appointmentType: "Online physiotherapy",
+    service: "",
+    date: "",
+    time: "",
+    concerns: "",
+  });
 
-  const handleChange = (event) => {
+  const [formError, setFormError] = useState("");
+
+  const updateField = (event) => {
     const { name, value } = event.target;
 
-    setForm((previous) => ({
+    setFormData((previous) => ({
       ...previous,
       [name]: value,
     }));
 
-    setSubmitted(false);
+    setFormError("");
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (!event.currentTarget.reportValidity()) {
+    const {
+      name,
+      phone,
+      email,
+      appointmentType,
+      service,
+      date,
+      time,
+      concerns,
+    } = formData;
+
+    if (
+      !name.trim() ||
+      !phone.trim() ||
+      !email.trim() ||
+      !service ||
+      !date ||
+      !time
+    ) {
+      setFormError("Please complete all required fields.");
       return;
     }
 
-    setSubmitted(true);
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setFormError("Please enter a valid email address.");
+      return;
+    }
 
-    // Connect your appointment API here to save the booking.
+    if (!/^[0-9+\s()]{7,20}$/.test(phone.trim())) {
+      setFormError("Please enter a valid phone number.");
+      return;
+    }
+
+    if (date < getLocalDate()) {
+      setFormError("Please choose today or a future date.");
+      return;
+    }
+
+    if (WHATSAPP_NUMBER === "919999999999") {
+      setFormError(
+        "Please add the actual Rehabics WhatsApp number in Appointment.jsx."
+      );
+      return;
+    }
+
+    const appointmentMessage = [
+      "Hello Rehabics Team!",
+      "",
+      "I would like to request a physiotherapy appointment.",
+      "",
+      `Name: ${name.trim()}`,
+      `Phone: ${phone.trim()}`,
+      `Email: ${email.trim()}`,
+      `Appointment type: ${appointmentType}`,
+      `Service: ${service}`,
+      `Preferred date: ${date}`,
+      `Preferred time: ${time}`,
+      `Additional details: ${concerns.trim() || "Not provided"}`,
+      "",
+      "Please confirm availability for my requested appointment.",
+    ].join("\n");
+
+    const whatsappURL =
+      `https://wa.me/${WHATSAPP_NUMBER}?text=` +
+      encodeURIComponent(appointmentMessage);
+
+    window.open(whatsappURL, "_blank", "noopener,noreferrer");
   };
 
+  const fadeUp = {
+    hidden: {
+      opacity: 0,
+      y: reduceMotion ? 0 : 20,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: reduceMotion ? 0 : 0.5,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  const appointmentTypes = [
+    {
+      value: "Online physiotherapy",
+      title: "Online session",
+      description: "Connect with a physiotherapist remotely.",
+      icon: Video,
+    },
+    {
+      value: "Clinic visit",
+      title: "Clinic visit",
+      description: "Request an in person appointment.",
+      icon: MapPin,
+    },
+  ];
+
+  const benefits = [
+    "Choose your preferred appointment type",
+    "Share your availability with our team",
+    "Receive confirmation directly from Rehabics",
+  ];
+
   return (
-    <main className="rehabAppointment">
+    <main className="rv3AppointmentPage">
       <HeroSection
-        eyebrow="PERSONALISED PHYSIOTHERAPY"
-        title="Your recovery."
-        highlight="Your next step."
-        description="Start a conversation with our physiotherapy team. Share your concerns and preferred appointment details so we can guide you on the next steps."
-        buttonText="Book an Appointment"
-        buttonLink="#appointmentForm"
-        secondaryText="Explore Conditions"
-        secondaryLink="/conditions"
-        image="https://images.pexels.com/photos/5793700/pexels-photo-5793700.jpeg"
-        imageAlt="Physiotherapy professional supporting patient care"
-        imageLabel="Your wellbeing matters"
-        imageDescription="Care that considers your needs"
-        features={[
-          {
-            title: "Personal care",
-            description: "Focused on your needs",
-            icon: "user",
-          },
-          {
-            title: "Expert guidance",
-            description: "Support at every step",
-            icon: "shield",
-          },
-          {
-            title: "Better movement",
-            description: "Work towards your goals",
-            icon: "activity",
-          },
-        ]}
+        eyebrow="YOUR RECOVERY STARTS HERE"
+        title="Book Your"
+        highlight="Physiotherapy"
+        secondLine="Appointment"
+        description="Take the next step towards better movement. Request an online session or a clinic visit with the Rehabics team."
+        primaryText="Book an Appointment"
+        primaryLink="#appointment-form"
+        secondaryText="Chat on WhatsApp"
+        secondaryLink={`https://wa.me/${WHATSAPP_NUMBER}`}
+        showSecondary
+        showStats={false}
+        showFloatingCards={false}
+        showBenefits={false}
       />
 
-      <section className="appointmentSection" id="appointmentForm">
-        <div className="appointmentContainer">
+      <section className="rv3AppointmentIntro">
+        <div className="rv3AppointmentContainer">
           <motion.div
-            className="appointmentIntro"
-            initial={reduceMotion ? false : { opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            className="rv3AppointmentIntroText"
+            initial={reduceMotion ? false : "hidden"}
+            whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
-            transition={{
-              duration: reduceMotion ? 0 : 0.5,
-              ease: "easeOut",
-            }}
+            variants={fadeUp}
           >
-            <span className="appointmentEyebrow">
-              <CalendarDays size={17} />
-              APPOINTMENT REQUEST
+            <span className="rv3AppointmentEyebrow">
+              <HeartPulse size={16} />
+              PERSONALISED PHYSIOTHERAPY
             </span>
 
             <h2>
-              Let us understand
-              <span> how we can help.</span>
+              A better way to
+              <span> begin your recovery.</span>
             </h2>
 
             <p>
-              Complete the form with your details and preferred
-              appointment time. Our team can then review your request
-              and follow up with you.
+              Tell us what you need and when you would like
+              to visit. Our team can review your request and
+              confirm the available appointment.
             </p>
+          </motion.div>
 
-            <div className="appointmentBenefits">
-              <div className="appointmentBenefit">
-                <span>
-                  <ShieldCheck size={20} />
-                </span>
-                <div>
-                  <strong>Individual attention</strong>
-                  <p>Your concerns and goals matter.</p>
-                </div>
-              </div>
-
-              <div className="appointmentBenefit">
-                <span>
-                  <HeartPulse size={20} />
-                </span>
-                <div>
-                  <strong>Care focused on movement</strong>
-                  <p>Discuss suitable options for your needs.</p>
-                </div>
-              </div>
-
-              <div className="appointmentBenefit">
-                <span>
-                  <MessageCircle size={20} />
-                </span>
-                <div>
-                  <strong>Clear next steps</strong>
-                  <p>Share your preferred contact details.</p>
-                </div>
+          <div className="rv3AppointmentSteps">
+            <div className="rv3AppointmentStep">
+              <span className="rv3AppointmentStepNumber">01</span>
+              <div>
+                <h3>Choose your session</h3>
+                <p>Select online care or a clinic visit.</p>
               </div>
             </div>
-          </motion.div>
 
-          <motion.div
-            className="appointmentFormCard"
-            initial={reduceMotion ? false : { opacity: 0, y: 22 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.15 }}
-            transition={{
-              duration: reduceMotion ? 0 : 0.55,
-              ease: "easeOut",
-            }}
-          >
-            {submitted ? (
-              <div className="appointmentSuccess" role="status">
-                <span className="appointmentSuccessIcon">
-                  <CheckCircle2 size={34} />
-                </span>
-
-                <h2>Request details completed</h2>
-
-                <p>
-                  Your details have been validated in this form.
-                  No appointment has been sent or confirmed yet.
-                  Connect the form to your booking backend to submit
-                  the request to your team.
-                </p>
-
-                <button
-                  type="button"
-                  className="appointmentSubmit"
-                  onClick={() => {
-                    setForm(initialForm);
-                    setSubmitted(false);
-                  }}
-                >
-                  Make Another Request
-                  <ArrowRight size={17} />
-                </button>
+            <div className="rv3AppointmentStep">
+              <span className="rv3AppointmentStepNumber">02</span>
+              <div>
+                <h3>Share your details</h3>
+                <p>Choose a preferred date and time.</p>
               </div>
-            ) : (
-              <>
-                <div className="appointmentFormHeading">
-                  <span className="appointmentFormIcon">
-                    <CalendarDays size={22} />
-                  </span>
+            </div>
 
-                  <div>
-                    <h2>Request an Appointment</h2>
-                    <p>Fill in your details below.</p>
-                  </div>
-                </div>
-
-                <form
-                  className="appointmentForm"
-                  onSubmit={handleSubmit}
-                >
-                  <div className="appointmentField">
-                    <label htmlFor="fullName">
-                      Full Name <span>*</span>
-                    </label>
-                    <div className="appointmentInputWrap">
-                      <UserRound size={17} />
-                      <input
-                        id="fullName"
-                        name="fullName"
-                        type="text"
-                        placeholder="Enter your full name"
-                        value={form.fullName}
-                        onChange={handleChange}
-                        autoComplete="name"
-                        minLength={2}
-                        required
-                      />
-                    </div>
-                  </div>
-
-                  <div className="appointmentField">
-                    <label htmlFor="phone">
-                      Phone Number <span>*</span>
-                    </label>
-                    <div className="appointmentInputWrap">
-                      <Phone size={17} />
-                      <input
-                        id="phone"
-                        name="phone"
-                        type="tel"
-                        placeholder="Enter your phone number"
-                        value={form.phone}
-                        onChange={handleChange}
-                        autoComplete="tel"
-                        pattern="[0-9+() ]{8,18}"
-                        title="Enter a valid phone number"
-                        required
-                      />
-                    </div>
-                  </div>
-
-                  <div className="appointmentField appointmentFieldFull">
-                    <label htmlFor="email">
-                      Email Address
-                    </label>
-                    <div className="appointmentInputWrap">
-                      <Mail size={17} />
-                      <input
-                        id="email"
-                        name="email"
-                        type="email"
-                        placeholder="Enter your email address"
-                        value={form.email}
-                        onChange={handleChange}
-                        autoComplete="email"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="appointmentField appointmentFieldFull">
-                    <label htmlFor="concern">
-                      What would you like help with? <span>*</span>
-                    </label>
-                    <select
-                      id="concern"
-                      name="concern"
-                      value={form.concern}
-                      onChange={handleChange}
-                      required
-                    >
-                      <option value="">Select a concern</option>
-                      {concerns.map((concern) => (
-                        <option key={concern} value={concern}>
-                          {concern}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-
-                  <div className="appointmentField">
-                    <label htmlFor="appointmentDate">
-                      Preferred Date <span>*</span>
-                    </label>
-                    <div className="appointmentInputWrap">
-                      <CalendarDays size={17} />
-                      <input
-                        id="appointmentDate"
-                        name="appointmentDate"
-                        type="date"
-                        min={minDate}
-                        value={form.appointmentDate}
-                        onChange={handleChange}
-                        required
-                      />
-                    </div>
-                  </div>
-
-                  <div className="appointmentField">
-                    <label htmlFor="preferredTime">
-                      Preferred Time <span>*</span>
-                    </label>
-                    <div className="appointmentInputWrap">
-                      <Clock3 size={17} />
-                      <select
-                        id="preferredTime"
-                        name="preferredTime"
-                        value={form.preferredTime}
-                        onChange={handleChange}
-                        required
-                      >
-                        <option value="">Select a time</option>
-                        {timeSlots.map((slot) => (
-                          <option key={slot} value={slot}>
-                            {slot}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                  </div>
-
-                  <div className="appointmentField appointmentFieldFull">
-                    <label htmlFor="message">
-                      Additional Details
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      placeholder="Share any details you would like us to know"
-                      value={form.message}
-                      onChange={handleChange}
-                      rows={4}
-                    />
-                  </div>
-
-                  <p className="appointmentRequiredNote">
-                    Fields marked with * are required.
-                  </p>
-
-                  <button
-                    type="submit"
-                    className="appointmentSubmit"
-                  >
-                    Submit Appointment Request
-                    <ArrowRight size={18} />
-                  </button>
-
-                  <p className="appointmentPrivacyNote">
-                    Submitting this form does not confirm an
-                    appointment. The team will need to review and
-                    confirm your preferred time.
-                  </p>
-                </form>
-              </>
-            )}
-          </motion.div>
+            <div className="rv3AppointmentStep">
+              <span className="rv3AppointmentStepNumber">03</span>
+              <div>
+                <h3>Send your request</h3>
+                <p>Continue to WhatsApp to contact our team.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <CTASection
-        eyebrow="WE ARE HERE TO HELP"
-        title="Have Questions Before Booking?"
-        description="Explore our physiotherapy services or learn more about the conditions we support before choosing your next step."
-        buttonText="Explore Our Services"
-        buttonLink="/services"
-        secondaryText="Explore Conditions"
-        secondaryLink="/conditions"
-      />
+      <section
+        className="rv3AppointmentBooking"
+        id="appointment-form"
+      >
+        <div className="rv3AppointmentContainer">
+          <div className="rv3AppointmentBookingGrid">
+            <motion.aside
+              className="rv3AppointmentSidebar"
+              initial={reduceMotion ? false : "hidden"}
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              variants={fadeUp}
+            >
+              <span className="rv3AppointmentEyebrow">
+                <ClipboardCheck size={16} />
+                APPOINTMENT REQUEST
+              </span>
+
+              <h2>
+                Let us help you
+                <span> move better.</span>
+              </h2>
+
+              <p className="rv3AppointmentSidebarText">
+                Complete the booking form with your preferred
+                session details. We will receive your request
+                through WhatsApp once you send the message.
+              </p>
+
+              <div className="rv3AppointmentBenefitList">
+                {benefits.map((benefit) => (
+                  <div
+                    className="rv3AppointmentBenefit"
+                    key={benefit}
+                  >
+                    <CheckCircle2 size={19} />
+                    <span>{benefit}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="rv3AppointmentHelpCard">
+                <span className="rv3AppointmentHelpIcon">
+                  <MessageCircle size={22} />
+                </span>
+
+                <div>
+                  <h3>Need help booking?</h3>
+                  <p>
+                    Send your request through WhatsApp and
+                    ask our team about the next steps.
+                  </p>
+                  <a
+                    href={`https://wa.me/${WHATSAPP_NUMBER}`}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Chat with our team
+                    <ArrowUpRight size={16} />
+                  </a>
+                </div>
+              </div>
+            </motion.aside>
+
+            <motion.div
+              className="rv3AppointmentFormCard"
+              initial={reduceMotion ? false : "hidden"}
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.12 }}
+              variants={fadeUp}
+            >
+              <div className="rv3AppointmentFormHeader">
+                <div>
+                  <span className="rv3AppointmentFormLabel">
+                    LET US KNOW YOUR PREFERENCES
+                  </span>
+                  <h2>Request an appointment</h2>
+                  <p>
+                    Fields marked with an asterisk are required.
+                  </p>
+                </div>
+
+                <span className="rv3AppointmentHeaderIcon">
+                  <CalendarDays size={24} />
+                </span>
+              </div>
+
+              <form
+                className="rv3AppointmentForm"
+                onSubmit={handleSubmit}
+              >
+                <div className="rv3AppointmentFormSectionTitle">
+                  <UserRound size={18} />
+                  <h3>Your details</h3>
+                </div>
+
+                <div className="rv3AppointmentField">
+                  <label htmlFor="appointmentName">
+                    Full name <span>*</span>
+                  </label>
+                  <input
+                    id="appointmentName"
+                    name="name"
+                    type="text"
+                    autoComplete="name"
+                    placeholder="Enter your full name"
+                    value={formData.name}
+                    onChange={updateField}
+                    required
+                  />
+                </div>
+
+                <div className="rv3AppointmentFormRow">
+                  <div className="rv3AppointmentField">
+                    <label htmlFor="appointmentPhone">
+                      Phone number <span>*</span>
+                    </label>
+                    <input
+                      id="appointmentPhone"
+                      name="phone"
+                      type="tel"
+                      autoComplete="tel"
+                      placeholder="Enter phone number"
+                      value={formData.phone}
+                      onChange={updateField}
+                      required
+                    />
+                  </div>
+
+                  <div className="rv3AppointmentField">
+                    <label htmlFor="appointmentEmail">
+                      Email address <span>*</span>
+                    </label>
+                    <input
+                      id="appointmentEmail"
+                      name="email"
+                      type="email"
+                      autoComplete="email"
+                      placeholder="you@example.com"
+                      value={formData.email}
+                      onChange={updateField}
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="rv3AppointmentFormDivider" />
+
+                <div className="rv3AppointmentFormSectionTitle">
+                  <CalendarDays size={18} />
+                  <h3>Session preferences</h3>
+                </div>
+
+                <div className="rv3AppointmentField">
+                  <label>
+                    Appointment type <span>*</span>
+                  </label>
+
+                  <div className="rv3AppointmentTypeOptions">
+                    {appointmentTypes.map((type) => {
+                      const Icon = type.icon;
+                      const selected =
+                        formData.appointmentType === type.value;
+
+                      return (
+                        <button
+                          className={
+                            selected
+                              ? "rv3AppointmentTypeCard isSelected"
+                              : "rv3AppointmentTypeCard"
+                          }
+                          type="button"
+                          key={type.value}
+                          aria-pressed={selected}
+                          onClick={() =>
+                            setFormData((previous) => ({
+                              ...previous,
+                              appointmentType: type.value,
+                            }))
+                          }
+                        >
+                          <span className="rv3AppointmentTypeIcon">
+                            <Icon size={21} />
+                          </span>
+
+                          <span className="rv3AppointmentTypeCopy">
+                            <strong>{type.title}</strong>
+                            <small>{type.description}</small>
+                          </span>
+
+                          <span className="rv3AppointmentRadio">
+                            {selected && (
+                              <span />
+                            )}
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                <div className="rv3AppointmentField">
+                  <label htmlFor="appointmentService">
+                    Service required <span>*</span>
+                  </label>
+                  <select
+                    id="appointmentService"
+                    name="service"
+                    value={formData.service}
+                    onChange={updateField}
+                    required
+                  >
+                    <option value="" disabled>
+                      Select a service
+                    </option>
+                    <option value="Physiotherapy consultation">
+                      Physiotherapy consultation
+                    </option>
+                    <option value="Pain management">
+                      Pain management
+                    </option>
+                    <option value="Mobility and rehabilitation">
+                      Mobility and rehabilitation
+                    </option>
+                    <option value="Sports injury rehabilitation">
+                      Sports injury rehabilitation
+                    </option>
+                    <option value="Post surgery rehabilitation">
+                      Post surgery rehabilitation
+                    </option>
+                    <option value="General physiotherapy">
+                      General physiotherapy
+                    </option>
+                  </select>
+                </div>
+
+                <div className="rv3AppointmentFormRow">
+                  <div className="rv3AppointmentField">
+                    <label htmlFor="appointmentDate">
+                      Preferred date <span>*</span>
+                    </label>
+                    <div className="rv3AppointmentInputIcon">
+                      <CalendarDays size={17} />
+                      <input
+                        id="appointmentDate"
+                        name="date"
+                        type="date"
+                        min={getLocalDate()}
+                        value={formData.date}
+                        onChange={updateField}
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div className="rv3AppointmentField">
+                    <label htmlFor="appointmentTime">
+                      Preferred time <span>*</span>
+                    </label>
+                    <div className="rv3AppointmentInputIcon">
+                      <Clock3 size={17} />
+                      <select
+                        id="appointmentTime"
+                        name="time"
+                        value={formData.time}
+                        onChange={updateField}
+                        required
+                      >
+                        <option value="" disabled>
+                          Select a time
+                        </option>
+                        <option value="Morning, 9 AM to 12 PM">
+                          Morning, 9 AM to 12 PM
+                        </option>
+                        <option value="Afternoon, 12 PM to 4 PM">
+                          Afternoon, 12 PM to 4 PM
+                        </option>
+                        <option value="Evening, 4 PM to 7 PM">
+                          Evening, 4 PM to 7 PM
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="rv3AppointmentField">
+                  <label htmlFor="appointmentConcerns">
+                    Tell us about your needs
+                  </label>
+                  <textarea
+                    id="appointmentConcerns"
+                    name="concerns"
+                    rows="3"
+                    placeholder="Share your concerns or any details that may help our team"
+                    value={formData.concerns}
+                    onChange={updateField}
+                  />
+                </div>
+
+                {formError && (
+                  <p
+                    className="rv3AppointmentError"
+                    role="alert"
+                  >
+                    {formError}
+                  </p>
+                )}
+
+                <button
+                  type="submit"
+                  className="rv3AppointmentSubmit"
+                >
+                  <MessageCircle size={18} />
+                  Request on WhatsApp
+                  <ArrowUpRight size={18} />
+                </button>
+
+                <p className="rv3AppointmentFormNote">
+                  Your appointment is not confirmed until the
+                  Rehabics team responds. WhatsApp will open
+                  with your request ready to send.
+                </p>
+              </form>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      <section className="rv3AppointmentBottom">
+        <div className="rv3AppointmentContainer">
+          <div className="rv3AppointmentBottomInner">
+            <span className="rv3AppointmentBottomIcon">
+              <HeartPulse size={25} />
+            </span>
+
+            <div>
+              <h2>Your recovery deserves the right support.</h2>
+              <p>
+                Take the first step and request your session
+                with Rehabics.
+              </p>
+            </div>
+
+            <a
+              href={`https://wa.me/${WHATSAPP_NUMBER}`}
+              target="_blank"
+              rel="noreferrer"
+              className="rv3AppointmentBottomButton"
+            >
+              <MessageCircle size={17} />
+              Contact our team
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <CTASection />
     </main>
   );
-}
+};
+
+export default Appointment;

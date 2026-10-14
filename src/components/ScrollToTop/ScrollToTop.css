@@ -1,58 +1,53 @@
-.scroll-top-button {
+
+.rv3ScrollTop {
   position: fixed;
-  right: 24px;
-  bottom: 24px;
-  z-index: 999;
+  right: 27px;
+  bottom: 160px;
+  z-index: 9997;
+
+  display: grid;
   width: 48px;
   height: 48px;
-  display: grid;
   place-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 14px;
-  background: var(--primary);
+
+  border: 1px solid rgba(216, 236, 232, 0.55);
+  border-radius: 15px;
+
   color: #ffffff;
-  box-shadow: 0 8px 24px rgba(22, 50, 79, 0.22);
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transform: translateY(12px);
-  transition:
-    opacity 0.25s ease,
-    visibility 0.25s ease,
-    transform 0.25s ease,
-    background 0.25s ease;
+  background: linear-gradient(145deg, #078985, #003f47);
+
+  box-shadow:
+    0 8px 24px rgba(0, 63, 71, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+
   cursor: pointer;
+  transition:
+    background 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
-.scroll-top-visible {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-  transform: translateY(0);
+.rv3ScrollTop:hover {
+  background: #103541;
+  box-shadow: 0 11px 28px rgba(0, 63, 71, 0.3);
 }
 
-.scroll-top-button:hover {
-  background: var(--accent);
-  transform: translateY(-3px);
-}
-
-.scroll-top-button:focus-visible {
-  outline: 3px solid var(--accent);
+.rv3ScrollTop:focus-visible {
+  outline: 3px solid #078985;
   outline-offset: 4px;
 }
 
-@media (max-width: 768px) {
-  .scroll-top-button {
-    right: 18px;
-    bottom: 18px;
+@media (max-width: 480px) {
+  .rv3ScrollTop {
+    right: 17px;
+    bottom: 145px;
     width: 44px;
     height: 44px;
-    border-radius: 12px;
+    border-radius: 13px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .scroll-top-button {
+  .rv3ScrollTop {
     transition: none;
   }
 }

@@ -1,370 +1,477 @@
-.rv3Navbar {
+
+.rehabNavbar {
+  --nav-primary: #078985;
+  --nav-dark: #103541;
+  --nav-deep: #003f47;
+  --nav-pearl: #f7faf9;
+  --nav-soft: #d8ece8;
+  --nav-muted: #617779;
+
   position: sticky;
   top: 0;
   z-index: 1000;
   width: 100%;
-  background: rgba(247, 250, 249, 0.94);
-  border-bottom: 1px solid rgba(221, 233, 230, 0.9);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  background: rgba(247, 250, 249, 0.96);
+  border-bottom: 1px solid rgba(16, 53, 65, 0.08);
+  color: var(--nav-dark);
+  font-family: "DM Sans", sans-serif;
+  transition:
+    box-shadow 0.25s ease,
+    background 0.25s ease,
+    border-color 0.25s ease;
 }
 
-.rv3NavInner {
-  width: min(100% - 40px, 1280px);
-  min-height: 82px;
-  margin-inline: auto;
+.rehabNavbar *,
+.rehabNavbar *::before,
+.rehabNavbar *::after {
+  box-sizing: border-box;
+}
+
+.rehabNavbar.isScrolled {
+  background: rgba(255, 255, 255, 0.98);
+  border-bottom-color: rgba(16, 53, 65, 0.06);
+  box-shadow: 0 8px 28px rgba(16, 53, 65, 0.08);
+}
+
+.rehabNavInner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
+  gap: 20px;
+  width: min(1240px, 100%);
+  min-height: 76px;
+  margin: 0 auto;
+  padding: 12px 24px;
 }
 
-.rv3Brand {
+.rehabNavBrand {
   display: inline-flex;
   align-items: center;
-  gap: 11px;
-  flex-shrink: 0;
+  flex: 0 0 auto;
+  gap: 10px;
+  color: var(--nav-dark);
+  text-decoration: none;
 }
 
-.rv3BrandIcon {
+.rehabNavLogo {
   position: relative;
-  width: 47px;
-  height: 47px;
   display: grid;
+  width: 43px;
+  height: 43px;
+  flex: 0 0 auto;
   place-items: center;
+  border-radius: 13px;
+  background: var(--nav-deep);
   color: #ffffff;
-  background: #123c46;
-  border-radius: 15px;
-  box-shadow: 0 7px 18px rgba(18, 60, 70, 0.16);
-  transition:
-    transform 250ms ease,
-    background 250ms ease;
 }
 
-.rv3Brand:hover .rv3BrandIcon {
-  transform: rotate(-5deg) scale(1.04);
-  background: #247c7b;
-}
-
-.rv3BrandPulse {
+.rehabLogoDot {
   position: absolute;
-  right: -5px;
-  bottom: -4px;
-  width: 22px;
-  height: 22px;
-  display: grid;
-  place-items: center;
-  color: #123c46;
-  background: #d8ece8;
-  border: 2px solid #f7faf9;
+  right: 5px;
+  bottom: 5px;
+  width: 9px;
+  height: 9px;
+  border: 2px solid var(--nav-deep);
   border-radius: 50%;
+  background: #70d6b6;
 }
 
-.rv3BrandText {
-  display: flex;
-  flex-direction: column;
-  gap: 1px;
-}
-
-.rv3BrandName {
-  color: #123c46;
-  font-family: "Lora", serif;
-  font-size: 27px;
-  font-weight: 700;
+.rehabBrandText strong {
+  display: block;
+  font-size: 23px;
+  font-weight: 800;
   line-height: 1.1;
   letter-spacing: -1px;
 }
 
-.rv3BrandTagline {
-  color: #687a7d;
-  font-size: 10px;
+.rehabBrandText small {
+  display: block;
+  margin-top: 4px;
+  color: var(--nav-muted);
+  font-size: 12px;
   font-weight: 700;
-  line-height: 1.4;
-  letter-spacing: 1.05px;
+  letter-spacing: 0.65px;
+  white-space: nowrap;
 }
 
-.rv3DesktopNav {
+.rehabDesktopNav {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: clamp(12px, 1.7vw, 25px);
+  min-width: 0;
 }
 
-.rv3NavLink {
+.rehabNavLink {
   position: relative;
-  padding-block: 10px;
-  color: #526568;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 10px 0;
+  color: #526a6d;
   font-size: 13px;
   font-weight: 600;
+  text-decoration: none;
   white-space: nowrap;
-  transition: color 200ms ease;
+  transition: color 0.2s ease;
 }
 
-.rv3NavLink::after {
+.rehabNavLink::after {
   position: absolute;
   right: 0;
   bottom: 3px;
   left: 0;
   height: 2px;
+  border-radius: 5px;
+  background: var(--nav-primary);
   content: "";
-  background: #247c7b;
-  border-radius: 4px;
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 220ms ease;
+  transition: transform 0.22s ease;
 }
 
-.rv3NavLink:hover,
-.rv3NavLinkActive {
-  color: #123c46;
+.rehabNavLink:hover,
+.rehabNavLink.active {
+  color: var(--nav-primary);
 }
 
-.rv3NavLink:hover::after,
-.rv3NavLinkActive::after {
+.rehabNavLink:hover::after,
+.rehabNavLink.active::after {
   transform: scaleX(1);
 }
 
-.rv3NavActions {
+.rehabNavActions {
   display: flex;
   align-items: center;
-  gap: 12px;
-  flex-shrink: 0;
+  justify-content: flex-end;
+  flex: 0 0 auto;
+  gap: 15px;
 }
 
-.rv3NavAppointment {
-  min-height: 46px;
-  padding: 10px 17px;
+.rehabLoginLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 43px;
+  padding: 10px 0;
+  color: var(--nav-deep);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.rehabLoginLink:hover {
+  color: var(--nav-primary);
+}
+
+.rehabBookButton {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 9px;
+  min-height: 44px;
+  padding: 12px 16px;
+  border: 1px solid var(--nav-primary);
+  border-radius: 10px;
+  background: var(--nav-primary);
   color: #ffffff;
-  background: #123c46;
-  border: 1px solid #123c46;
-  border-radius: 999px;
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
   white-space: nowrap;
-  box-shadow: 0 6px 16px rgba(18, 60, 70, 0.12);
+  box-shadow: 0 5px 14px rgba(7, 137, 133, 0.15);
   transition:
-    background 220ms ease,
-    border-color 220ms ease,
-    transform 220ms ease,
-    box-shadow 220ms ease;
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
-.rv3NavAppointment:hover {
-  color: #ffffff;
-  background: #247c7b;
-  border-color: #247c7b;
-  transform: translateY(-2px);
-  box-shadow: 0 9px 22px rgba(18, 60, 70, 0.18);
+.rehabBookButton:hover {
+  transform: translateY(-1px);
+  border-color: var(--nav-deep);
+  background: var(--nav-deep);
+  box-shadow: 0 8px 18px rgba(0, 63, 71, 0.16);
 }
 
-.rv3NavAppointment svg {
-  transition: transform 220ms ease;
+.rehabBookButton svg {
+  flex: 0 0 auto;
+  transition: transform 0.2s ease;
 }
 
-.rv3NavAppointment:hover svg {
+.rehabBookButton:hover svg {
   transform: translate(2px, -2px);
 }
 
-.rv3MenuToggle {
+.rehabMobileToggle {
   display: none;
-  width: 44px;
-  height: 44px;
   align-items: center;
   justify-content: center;
-  color: #123c46;
+  width: 44px;
+  height: 44px;
+  flex: 0 0 auto;
+  border: 1px solid #dceae7;
+  border-radius: 11px;
   background: #ffffff;
-  border: 1px solid #dde9e6;
-  border-radius: 13px;
+  color: var(--nav-deep);
+  cursor: pointer;
   transition:
-    background 200ms ease,
-    border-color 200ms ease;
+    background 0.2s ease,
+    border-color 0.2s ease;
 }
 
-.rv3MenuToggle:hover {
-  background: #d8ece8;
-  border-color: #247c7b;
+.rehabMobileToggle:hover {
+  border-color: var(--nav-primary);
+  background: var(--nav-soft);
 }
 
-.rv3MobileNav {
+.rehabMobileBackdrop,
+.rehabMobileNav {
   display: none;
 }
 
-.rv3MobileNavLink {
-  min-height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-  padding: 11px 14px;
-  color: #526568;
-  background: transparent;
-  border: 1px solid transparent;
-  border-radius: 12px;
-  font-size: 14px;
-  font-weight: 600;
-  transition:
-    color 200ms ease,
-    background 200ms ease,
-    border-color 200ms ease;
+.rehabNavbar a:focus-visible,
+.rehabNavbar button:focus-visible {
+  outline: 3px solid rgba(7, 137, 133, 0.45);
+  outline-offset: 3px;
 }
 
-.rv3MobileNavLink:hover,
-.rv3MobileNavLinkActive {
-  color: #123c46;
-  background: #eaf4f1;
-  border-color: #d8ece8;
+@media (min-width: 1100px) {
+  .rehabNavInner {
+    padding-right: 30px;
+    padding-left: 30px;
+  }
 }
 
-.rv3MobileCtaWrap {
-  padding-top: 10px;
-}
-
-.rv3MobileAppointment {
-  width: 100%;
-}
-
-.rv3MobileNote {
-  margin-top: 12px;
-  color: #687a7d;
-  font-size: 12px;
-  text-align: center;
-}
-
-@media (max-width: 1120px) {
-  .rv3NavInner {
-    gap: 16px;
+@media (max-width: 1080px) {
+  .rehabNavInner {
+    gap: 15px;
+    padding-right: 20px;
+    padding-left: 20px;
   }
 
-  .rv3DesktopNav {
+  .rehabDesktopNav {
     gap: 13px;
   }
 
-  .rv3BrandName {
-    font-size: 25px;
+  .rehabNavActions {
+    gap: 12px;
   }
 
-  .rv3NavLink {
-    font-size: 12px;
-  }
-
-  .rv3NavAppointment {
-    padding-inline: 13px;
-    font-size: 12px;
-  }
-}
-
-@media (max-width: 940px) {
-  .rv3NavInner {
-    min-height: 76px;
-  }
-
-  .rv3DesktopNav {
-    display: none;
-  }
-
-  .rv3NavActions {
-    margin-left: auto;
-  }
-
-  .rv3MenuToggle {
-    display: inline-flex;
-  }
-
-  .rv3MobileNav {
-    width: min(100% - 32px, 600px);
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    margin: 0 auto 16px;
-    padding: 15px;
-    background: #ffffff;
-    border: 1px solid #dde9e6;
-    border-radius: 20px;
-    box-shadow: 0 18px 40px rgba(18, 60, 70, 0.1);
-  }
-}
-
-@media (max-width: 520px) {
-  .rv3NavInner {
-    width: calc(100% - 28px);
-    min-height: 70px;
-    gap: 8px;
-  }
-
-  .rv3Brand {
-    gap: 8px;
-  }
-
-  .rv3BrandIcon {
-    width: 41px;
-    height: 41px;
-    border-radius: 13px;
-  }
-
-  .rv3BrandIcon > svg {
-    width: 22px;
-    height: 22px;
-  }
-
-  .rv3BrandName {
-    font-size: 23px;
-  }
-
-  .rv3BrandTagline {
-    font-size: 9px;
-    letter-spacing: 0.65px;
-  }
-
-  .rv3NavActions {
-    gap: 7px;
-  }
-
-  .rv3NavActions > .rv3NavAppointment {
-    min-height: 42px;
-    padding: 9px 11px;
-    gap: 4px;
-    font-size: 12px;
-  }
-
-  .rv3NavActions > .rv3NavAppointment svg {
-    width: 15px;
-    height: 15px;
-  }
-
-  .rv3MenuToggle {
-    width: 41px;
-    height: 41px;
-    flex-shrink: 0;
-  }
-
-  .rv3MobileNav {
-    width: calc(100% - 28px);
-  }
-}
-
-@media (max-width: 370px) {
-  .rv3BrandTagline {
-    display: none;
-  }
-
-  .rv3BrandName {
+  .rehabBrandText strong {
     font-size: 21px;
   }
 
-  .rv3NavActions > .rv3NavAppointment {
-    padding-inline: 9px;
+  .rehabBrandText small {
+    font-size: 12px;
+    letter-spacing: 0.3px;
+  }
+
+  .rehabNavLink {
+    font-size: 12px;
+  }
+
+  .rehabBookButton {
+    gap: 6px;
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+}
+
+@media (max-width: 850px) {
+  .rehabNavInner {
+    min-height: 70px;
+    padding: 12px 20px;
+  }
+
+  .rehabDesktopNav,
+  .rehabNavActions {
+    display: none;
+  }
+
+  .rehabMobileToggle {
+    display: inline-flex;
+  }
+
+  .rehabMobileBackdrop {
+    position: fixed;
+    inset: 70px 0 0;
+    z-index: 1001;
+    display: block;
+    width: 100%;
+    height: calc(100dvh - 70px);
+    border: 0;
+    background: rgba(16, 53, 65, 0.28);
+    backdrop-filter: blur(3px);
+  }
+
+  .rehabMobileNav {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    z-index: 1002;
+    display: block;
+    max-height: calc(100dvh - 70px);
+    padding: 20px;
+    overflow-y: auto;
+    border-top: 1px solid #e5efec;
+    border-radius: 0 0 18px 18px;
+    background: #ffffff;
+    box-shadow: 0 18px 35px rgba(16, 53, 65, 0.13);
+  }
+
+  .rehabMobileNavHeading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e9f0ee;
+  }
+
+  .rehabMobileEyebrow {
+    color: var(--nav-primary);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+  }
+
+  .rehabMobileNavHeading h2 {
+    margin: 8px 0 0;
+    color: var(--nav-dark);
+    font-family: "Lora", serif;
+    font-size: 23px;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  .rehabMobileHeart {
+    display: grid;
+    width: 46px;
+    height: 46px;
+    flex: 0 0 auto;
+    place-items: center;
+    border-radius: 14px;
+    background: var(--nav-soft);
+    color: var(--nav-deep);
+  }
+
+  .rehabMobileLinks {
+    display: grid;
+    gap: 3px;
+    padding: 12px 0;
+  }
+
+  .rehabMobileLink {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    min-height: 46px;
+    padding: 12px 13px;
+    border-radius: 9px;
+    color: #526a6d;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition:
+      background 0.2s ease,
+      color 0.2s ease;
+  }
+
+  .rehabMobileLink svg {
+    color: #8ca4a1;
+  }
+
+  .rehabMobileLink:hover,
+  .rehabMobileLink.active {
+    background: #eef8f5;
+    color: var(--nav-primary);
+  }
+
+  .rehabMobileLink.active svg {
+    color: var(--nav-primary);
+  }
+
+  .rehabMobileActions {
+    display: grid;
+    grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr);
+    gap: 10px;
+    padding-top: 15px;
+    border-top: 1px solid #e9f0ee;
+  }
+
+  .rehabMobileLogin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    padding: 12px;
+    border: 1px solid #dceae7;
+    border-radius: 10px;
+    color: var(--nav-deep);
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .rehabMobileLogin:hover {
+    background: var(--nav-pearl);
+  }
+
+  .rehabMobileBook {
+    min-height: 46px;
+    padding: 12px;
+  }
+
+  .rehabMobileNote {
+    margin: 16px 0 0;
+    color: var(--nav-muted);
+    font-size: 12px;
+    line-height: 1.7;
+    text-align: center;
+  }
+}
+
+@media (max-width: 380px) {
+  .rehabNavInner {
+    padding-right: 14px;
+    padding-left: 14px;
+  }
+
+  .rehabBrandText strong {
+    font-size: 21px;
+  }
+
+  .rehabBrandText small {
+    font-size: 12px;
+    letter-spacing: 0;
+  }
+
+  .rehabNavLogo {
+    width: 40px;
+    height: 40px;
+  }
+
+  .rehabMobileNav {
+    padding: 20px 14px;
+  }
+
+  .rehabMobileActions {
+    grid-template-columns: 1fr;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .rv3Navbar *,
-  .rv3Navbar *::before,
-  .rv3Navbar *::after {
+  .rehabNavbar *,
+  .rehabNavbar *::before,
+  .rehabNavbar *::after {
+    scroll-behavior: auto !important;
     animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
 }

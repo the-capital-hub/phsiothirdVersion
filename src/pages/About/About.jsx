@@ -1,220 +1,493 @@
 
+import { useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  HeartPulse,
+  ShieldCheck,
+  Target,
+  Eye,
+  Activity,
+  HandHeart,
+  Stethoscope,
+  ClipboardCheck,
+  Sparkles,
+  MoveUpRight,
+} from "lucide-react";
+import { Link } from "react-router-dom";
+
 import HeroSection from "../../components/HeroSection/HeroSection";
 import CTASection from "../../components/CTASection/CTASection";
 import "./About.css";
 
-const values = [
+const careValues = [
   {
+    icon: HeartPulse,
     number: "01",
     title: "Patient First",
     description:
-      "Every recovery journey is different. We focus on your goals, comfort and individual needs.",
-    icon: "♡",
+      "Every person is different. We believe care should reflect your needs, goals and everyday life.",
   },
   {
+    icon: ClipboardCheck,
     number: "02",
-    title: "Expert Guidance",
+    title: "Personalised Care",
     description:
-      "Get structured physiotherapy guidance designed to help you move with confidence.",
-    icon: "✳",
+      "Your recovery journey starts with understanding your movement, concerns and personal goals.",
   },
   {
+    icon: Activity,
     number: "03",
-    title: "Consistent Progress",
+    title: "Movement Matters",
     description:
-      "Build better habits through guided exercises, clear routines and steady progress.",
-    icon: "↗",
+      "We focus on helping you build confidence, improve mobility and return to the activities you enjoy.",
+  },
+  {
+    icon: ShieldCheck,
+    number: "04",
+    title: "Care You Can Trust",
+    description:
+      "We value clear communication, informed decisions and supportive guidance throughout your care.",
   },
 ];
 
-const principles = [
+const teamMembers = [
   {
-    title: "Care that understands you",
+    name: "Meet Our Physiotherapists",
+    role: "Clinical Care Team",
     description:
-      "We believe effective physiotherapy starts with understanding your challenges, lifestyle and recovery goals.",
+      "Dedicated professionals focused on understanding your concerns and guiding your recovery.",
+    icon: Stethoscope,
+    image:
+      "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=800&q=85",
   },
   {
-    title: "Movement with purpose",
+    name: "Your Recovery Partners",
+    role: "Personalised Guidance",
     description:
-      "Every exercise should have a purpose. We encourage mindful movement that supports everyday activities.",
+      "A supportive approach that keeps your needs, comfort and progress at the centre of care.",
+    icon: HandHeart,
+    image:
+      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=85",
   },
   {
-    title: "Progress you can trust",
+    name: "Your Wellness Journey",
+    role: "Movement and Wellbeing",
     description:
-      "We value consistency, realistic goals and guidance that helps you stay committed to your recovery.",
+      "Practical guidance to help you understand movement and work towards your personal goals.",
+    icon: Activity,
+    image:
+      "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=85",
   },
 ];
 
-function AboutPage() {
+function About() {
+  const reduceMotion = useReducedMotion();
+
+  const reveal = {
+    hidden: {
+      opacity: 0,
+      y: reduceMotion ? 0 : 22,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: reduceMotion ? 0 : 0.55,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  const stagger = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: reduceMotion ? 0 : 0.12,
+      },
+    },
+  };
+
   return (
-    <main className="rehabAbout">
+    <main className="rv3About">
+      {/* Existing website hero */}
       <HeroSection />
 
-      <section className="rhAboutIntro rhSection">
-        <div className="rhContainer rhAboutIntroGrid">
-          <div className="rhAboutIntroVisual">
-            <div className="rhAboutImageMain">
+      {/* About introduction */}
+      <section className="rv3AboutIntro">
+        <div className="rv3AboutContainer rv3AboutIntroGrid">
+          <motion.div
+            className="rv3AboutIntroVisual"
+            variants={reveal}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+          >
+            <div className="rv3AboutImageFrame">
               <img
-                src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1000&q=85"
-                alt="Physiotherapy and guided movement session"
+                src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1100&q=85"
+                alt="Physiotherapy professional supporting patient care"
+                loading="lazy"
               />
-            </div>
 
-            <div className="rhAboutImageNote">
-              <span className="rhAboutNoteIcon">✳</span>
-              <div>
-                <strong>Move better. Feel better.</strong>
-                <p>Your journey, your pace.</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="rhAboutIntroContent">
-            <span className="rhEyebrow">ABOUT REHABICS</span>
-
-            <h2>
-              Helping you move towards a <em>better you.</em>
-            </h2>
-
-            <p>
-              Recovery is more than getting back on your feet. It is about
-              rebuilding confidence, improving movement and feeling comfortable
-              in your everyday life.
-            </p>
-
-            <p>
-              Rehabics brings a thoughtful approach to physiotherapy, combining
-              guided movement, personalised goals and consistent support to
-              make your recovery journey feel more manageable.
-            </p>
-
-            <a className="rhButton rhButtonPrimary" href="/contact">
-              Start Your Journey <span aria-hidden="true">↗</span>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section className="rhAboutStory rhSection">
-        <div className="rhContainer rhAboutStoryGrid">
-          <div className="rhAboutStoryHeading">
-            <span className="rhEyebrow">OUR STORY</span>
-            <h2>
-              A more thoughtful way to approach <em>recovery.</em>
-            </h2>
-          </div>
-
-          <div className="rhAboutStoryContent">
-            <p>
-              Physiotherapy can feel overwhelming when you are unsure where
-              to begin or how to stay consistent. We believe the experience
-              should feel clearer, more supportive and easier to follow.
-            </p>
-
-            <p>
-              That belief shapes Rehabics. Our focus is on helping people
-              understand their movement, follow purposeful routines and take
-              practical steps towards their recovery goals.
-            </p>
-
-            <div className="rhAboutStoryQuote">
-              <span aria-hidden="true">“</span>
-              <p>
-                Small steps, taken consistently, can make a meaningful
-                difference in the way you move and live.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="rhAboutMission rhSection">
-        <div className="rhContainer">
-          <div className="rhAboutMissionCard">
-            <div className="rhAboutMissionTop">
-              <span className="rhEyebrow">OUR MISSION</span>
-              <span className="rhAboutMissionMark" aria-hidden="true">
-                ✳
-              </span>
-            </div>
-
-            <h2>
-              Making better movement part of <em>everyday life.</em>
-            </h2>
-
-            <p>
-              Our mission is to make physiotherapy guidance more approachable
-              and help people build confidence through purposeful movement,
-              consistent practice and a clearer understanding of their bodies.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="rhAboutValues rhSection">
-        <div className="rhContainer">
-          <div className="rhAboutSectionHeading">
-            <span className="rhEyebrow">WHAT MATTERS TO US</span>
-            <h2>
-              Care built around <em>you.</em>
-            </h2>
-            <p>
-              The principles that shape how we think about your recovery.
-            </p>
-          </div>
-
-          <div className="rhAboutValuesGrid">
-            {values.map((value) => (
-              <article className="rhAboutValueCard" key={value.number}>
-                <div className="rhAboutValueTop">
-                  <span className="rhAboutValueNumber">{value.number}</span>
-                  <span className="rhAboutValueIcon" aria-hidden="true">
-                    {value.icon}
-                  </span>
-                </div>
-
-                <h3>{value.title}</h3>
-                <p>{value.description}</p>
-                <span className="rhAboutValueLine" />
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="rhAboutPrinciples rhSection">
-        <div className="rhContainer rhAboutPrinciplesGrid">
-          <div className="rhAboutPrinciplesIntro">
-            <span className="rhEyebrow">OUR APPROACH</span>
-            <h2>
-              Thoughtful care. <em>Meaningful progress.</em>
-            </h2>
-            <p>
-              We keep the focus on what matters most: understanding your needs,
-              building consistency and supporting your next step.
-            </p>
-          </div>
-
-          <div className="rhAboutPrinciplesList">
-            {principles.map((principle, index) => (
-              <article className="rhAboutPrinciple" key={principle.title}>
-                <span className="rhAboutPrincipleNumber">
-                  0{index + 1}
+              <div className="rv3AboutImageLabel">
+                <span className="rv3AboutLabelIcon">
+                  <HeartPulse size={20} />
                 </span>
 
-                <div>
-                  <h3>{principle.title}</h3>
-                  <p>{principle.description}</p>
-                </div>
-              </article>
-            ))}
+                <span>
+                  <strong>Care with purpose</strong>
+                  <small>Movement for everyday life</small>
+                </span>
+              </div>
+            </div>
+
+            <div className="rv3AboutImageAccent" />
+            <span className="rv3AboutImageOrb" />
+          </motion.div>
+
+          <motion.div
+            className="rv3AboutIntroContent"
+            variants={stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+          >
+            <motion.span
+              className="rv3AboutEyebrow"
+              variants={reveal}
+            >
+              <span />
+              GET TO KNOW REHABICS
+            </motion.span>
+
+            <motion.h2 variants={reveal}>
+              Helping you move better, one step at a time.
+            </motion.h2>
+
+            <motion.p
+              className="rv3AboutLead"
+              variants={reveal}
+            >
+              We believe better movement can make a meaningful
+              difference in everyday life.
+            </motion.p>
+
+            <motion.p
+              className="rv3AboutBody"
+              variants={reveal}
+            >
+              Rehabics is built around a simple idea. Every person
+              deserves to feel heard, understood and supported
+              throughout their physiotherapy journey. Our approach
+              puts your needs, comfort and individual goals first.
+            </motion.p>
+
+            <motion.p
+              className="rv3AboutBody"
+              variants={reveal}
+            >
+              From understanding movement concerns to working
+              towards greater confidence, we aim to make your
+              experience clear, encouraging and centred on you.
+            </motion.p>
+
+            <motion.div
+              className="rv3AboutIntroPoints"
+              variants={reveal}
+            >
+              <span>
+                <ShieldCheck size={17} />
+                Individual attention
+              </span>
+
+              <span>
+                <HeartPulse size={17} />
+                Supportive care
+              </span>
+            </motion.div>
+
+            <motion.div variants={reveal}>
+              <Link
+                to="/services"
+                className="rv3AboutPrimaryLink"
+              >
+                Explore our services
+                <ArrowRight size={17} />
+              </Link>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Mission and vision */}
+      <section className="rv3AboutPurpose">
+        <div className="rv3AboutContainer">
+          <motion.div
+            className="rv3AboutSectionHeading rv3AboutPurposeHeading"
+            variants={stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+          >
+            <motion.span
+              className="rv3AboutEyebrow"
+              variants={reveal}
+            >
+              OUR PURPOSE
+            </motion.span>
+
+            <motion.h2 variants={reveal}>
+              Care that looks beyond the condition.
+            </motion.h2>
+
+            <motion.p variants={reveal}>
+              We focus on the person behind every recovery journey
+              and the everyday moments that matter to them.
+            </motion.p>
+          </motion.div>
+
+          <div className="rv3AboutPurposeGrid">
+            <motion.article
+              className="rv3AboutPurposeCard rv3AboutMission"
+              variants={reveal}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              whileHover={reduceMotion ? {} : { y: -5 }}
+            >
+              <div className="rv3AboutPurposeIcon">
+                <Target size={25} />
+              </div>
+
+              <span className="rv3AboutCardLabel">
+                WHAT DRIVES US
+              </span>
+
+              <h3>Our Mission</h3>
+
+              <p>
+                To make physiotherapy care more personal,
+                approachable and focused on helping people move
+                with greater comfort and confidence.
+              </p>
+
+              <div className="rv3AboutCardBottom">
+                <span>01</span>
+                <span />
+                <HeartPulse size={20} />
+              </div>
+            </motion.article>
+
+            <motion.article
+              className="rv3AboutPurposeCard rv3AboutVision"
+              variants={reveal}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              whileHover={reduceMotion ? {} : { y: -5 }}
+            >
+              <div className="rv3AboutPurposeIcon">
+                <Eye size={25} />
+              </div>
+
+              <span className="rv3AboutCardLabel">
+                WHERE WE ASPIRE
+              </span>
+
+              <h3>Our Vision</h3>
+
+              <p>
+                To encourage a future where people understand
+                their movement, take an active role in their
+                wellbeing and feel supported along the way.
+              </p>
+
+              <div className="rv3AboutCardBottom">
+                <span>02</span>
+                <span />
+                <Sparkles size={20} />
+              </div>
+            </motion.article>
           </div>
         </div>
       </section>
 
+      {/* Our approach */}
+      <section className="rv3AboutValues">
+        <div className="rv3AboutContainer">
+          <motion.div
+            className="rv3AboutSectionHeading"
+            variants={stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+          >
+            <motion.span
+              className="rv3AboutEyebrow"
+              variants={reveal}
+            >
+              THE REHABICS APPROACH
+            </motion.span>
+
+            <motion.h2 variants={reveal}>
+              The values behind your care.
+            </motion.h2>
+
+            <motion.p variants={reveal}>
+              Thoughtful care starts with listening, understanding
+              and working together towards meaningful goals.
+            </motion.p>
+          </motion.div>
+
+          <motion.div
+            className="rv3AboutValuesGrid"
+            variants={stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.12 }}
+          >
+            {careValues.map((value) => {
+              const ValueIcon = value.icon;
+
+              return (
+                <motion.article
+                  className="rv3AboutValueCard"
+                  key={value.number}
+                  variants={reveal}
+                  whileHover={reduceMotion ? {} : { y: -5 }}
+                >
+                  <div className="rv3AboutValueTop">
+                    <span className="rv3AboutValueIcon">
+                      <ValueIcon size={23} />
+                    </span>
+
+                    <span className="rv3AboutValueNumber">
+                      {value.number}
+                    </span>
+                  </div>
+
+                  <h3>{value.title}</h3>
+
+                  <p>{value.description}</p>
+
+                  <div className="rv3AboutValueLine" />
+                </motion.article>
+              );
+            })}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Team */}
+      <section className="rv3AboutTeam">
+        <div className="rv3AboutContainer">
+          <motion.div
+            className="rv3AboutTeamHeader"
+            variants={stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+          >
+            <div>
+              <motion.span
+                className="rv3AboutEyebrow"
+                variants={reveal}
+              >
+                PEOPLE BEHIND THE CARE
+              </motion.span>
+
+              <motion.h2 variants={reveal}>
+                Your journey deserves a caring team.
+              </motion.h2>
+            </div>
+
+            <motion.p variants={reveal}>
+              A supportive experience starts with people who
+              listen, communicate and help you understand your
+              next steps.
+            </motion.p>
+          </motion.div>
+
+          <motion.div
+            className="rv3AboutTeamGrid"
+            variants={stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.12 }}
+          >
+            {teamMembers.map((member) => {
+              const MemberIcon = member.icon;
+
+              return (
+                <motion.article
+                  className="rv3AboutTeamCard"
+                  key={member.name}
+                  variants={reveal}
+                  whileHover={reduceMotion ? {} : { y: -5 }}
+                >
+                  <div className="rv3AboutTeamImage">
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      loading="lazy"
+                    />
+
+                    <span className="rv3AboutTeamIcon">
+                      <MemberIcon size={21} />
+                    </span>
+                  </div>
+
+                  <div className="rv3AboutTeamContent">
+                    <span className="rv3AboutTeamRole">
+                      {member.role}
+                    </span>
+
+                    <h3>{member.name}</h3>
+
+                    <p>{member.description}</p>
+
+                    <Link
+                      to="/team"
+                      className="rv3AboutTeamLink"
+                    >
+                      Meet our team
+                      <MoveUpRight size={16} />
+                    </Link>
+                  </div>
+                </motion.article>
+              );
+            })}
+          </motion.div>
+
+          <motion.div
+            className="rv3AboutTeamNote"
+            variants={reveal}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+          >
+            <span className="rv3AboutTeamNoteIcon">
+              <HandHeart size={23} />
+            </span>
+
+            <p>
+              Your goals matter. We believe the best care begins
+              with a conversation and grows through collaboration.
+            </p>
+
+            <Link to="/contact" aria-label="Contact Rehabics">
+              <ArrowUpRight size={21} />
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Existing website CTA */}
       <CTASection />
     </main>
   );
 }
 
-export default AboutPage;
+export default About;

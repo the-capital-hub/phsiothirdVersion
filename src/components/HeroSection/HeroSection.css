@@ -3,19 +3,19 @@
   --hero-ink: #103541;
   --hero-teal: #078985;
   --hero-deep: #003f47;
-background-image:url('../../assets/herobg.png') ;
+  --hero-soft: #d8ece8;
+  --hero-paper: #f7faf9;
+
   position: relative;
   isolation: isolate;
+  display: flex;
+  flex-direction: column;
   width: 100%;
+  min-height: calc(100vh - 76px);
+  min-height: calc(100svh - 76px);
   overflow: hidden;
   color: var(--hero-ink);
-  background:  url("../../assets/rehabics-hero-bg.png") center top / cover no-repeat;
-}
-.backgroundimage{
-  z-index: 10;
-    background:  url("../../assets/rehabics-hero-bg.png") center top / cover no-repeat;
-
-
+  background: var(--hero-paper);
 }
 
 .rv3HeroBackground {
@@ -24,128 +24,156 @@ background-image:url('../../assets/herobg.png') ;
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(ellipse at 65% 38%, rgba(164, 219, 211, 0.2), transparent 40%),
-    linear-gradient(90deg, rgba(247, 250, 249, 0.93) 0%, rgba(247, 250, 249, 0.76) 39%, rgba(247, 250, 249, 0.08) 75%);
+    radial-gradient(
+      ellipse at 78% 28%,
+      rgba(216, 236, 232, 0.82),
+      transparent 40%
+    ),
+    linear-gradient(
+      110deg,
+      rgba(247, 250, 249, 0.99) 0%,
+      rgba(247, 250, 249, 0.96) 45%,
+      rgba(216, 236, 232, 0.48) 100%
+    ),
+    url("../../assets/rehabics-hero-bg.png") center / cover no-repeat;
 }
 
 .rv3HeroContainer {
-  width: calc(100% - 48px);
-  max-width: 1600px;
-  min-height: 610px;
-  margin-inline: auto;
-  padding: 20px 0 28px;
+  position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 0.96fr) minmax(0, 1.12fr);
+  grid-template-columns: minmax(0, 0.94fr) minmax(0, 1.06fr);
   align-items: center;
   gap: 28px;
+  flex: 1;
+  width: calc(100% - 48px);
+  max-width: 1450px;
+  min-height: 0;
+  margin-inline: auto;
+  padding: 12px 0;
 }
 
 .rv3HeroContent {
   position: relative;
   z-index: 3;
   min-width: 0;
-  padding: 15px 0;
+  padding: 8px 0;
 }
 
 .rv3HeroEyebrow {
-  width: fit-content;
-  max-width: 100%;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 22px;
-  padding: 8px 13px;
+  gap: 9px;
+  max-width: 100%;
+  margin-bottom: 18px;
+  padding: 8px 12px;
+  border: 1px solid rgba(7, 137, 133, 0.17);
   border-radius: 40px;
-  background: rgba(216, 236, 232, 0.95);
-  color: #124f56;
+  background: rgba(216, 236, 232, 0.8);
+  color: #075d60;
   font-size: 12px;
   font-weight: 750;
-  letter-spacing: 0.7px;
-  line-height: 1.5;
+  letter-spacing: 0.6px;
+  line-height: 1.4;
 }
 
 .rv3HeroEyebrowDot {
+  position: relative;
   width: 8px;
   height: 8px;
   flex: 0 0 8px;
   border-radius: 50%;
-  background: #078985;
+  background: var(--hero-teal);
+  box-shadow: 0 0 0 4px rgba(7, 137, 133, 0.1);
 }
 
 .rv3HeroHeading {
   margin: 0;
-  color: #103541;
+  color: var(--hero-ink);
   font-family: "Lora", Georgia, serif;
-  font-size: clamp(54px, 5.3vw, 84px);
+  font-size: clamp(46px, 4.7vw, 74px);
   font-weight: 600;
-  line-height: 0.99;
-  letter-spacing: -2.7px;
+  line-height: 1.04;
+  letter-spacing: -2.4px;
   overflow-wrap: normal;
 }
 
 .rv3HeroHeading span {
-  color: #078985;
+  color: var(--hero-teal);
 }
 
 .rv3HeroDescription {
-  max-width: 560px;
-  margin: 20px 0 0;
-  color: #465d68;
+  max-width: 510px;
+  margin: 17px 0 0;
+  color: #4b626b;
   font-size: 16px;
-  line-height: 1.75;
+  line-height: 1.7;
 }
 
 .rv3HeroActions {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 12px;
-  margin-top: 24px;
+  gap: 11px;
+  margin-top: 22px;
 }
 
 .rv3HeroPrimaryButton,
 .rv3HeroSecondaryButton {
-  min-height: 49px;
+  min-height: 47px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  padding: 0 17px;
-  border: 1px solid #07505a;
+  gap: 9px;
+  padding: 0 15px;
+  border: 1px solid transparent;
   border-radius: 50px;
   font-size: 13px;
   font-weight: 650;
   text-decoration: none;
-  transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .rv3HeroPrimaryButton {
-  background: #043e47;
+  background: var(--hero-deep);
   color: #ffffff;
-  box-shadow: 0 7px 20px rgba(4, 62, 71, 0.13);
+  box-shadow: 0 7px 20px rgba(0, 63, 71, 0.16);
 }
 
 .rv3HeroPrimaryButton:hover {
   transform: translateY(-2px);
-  background: #087c7a;
-  box-shadow: 0 10px 24px rgba(4, 62, 71, 0.2);
+  background: #075f61;
+  box-shadow: 0 10px 24px rgba(0, 63, 71, 0.22);
+}
+
+.rv3HeroPrimaryButton svg:last-child {
+  transition: transform 0.25s ease;
+}
+
+.rv3HeroPrimaryButton:hover svg:last-child {
+  transform: translateX(3px);
 }
 
 .rv3HeroSecondaryButton {
-  background: rgba(255, 255, 255, 0.8);
-  color: #124f56;
+  border-color: rgba(0, 63, 71, 0.17);
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--hero-deep);
 }
 
 .rv3HeroSecondaryButton:hover {
   transform: translateY(-2px);
-  background: #e5f3f0;
+  border-color: rgba(7, 137, 133, 0.35);
+  background: #ffffff;
 }
 
 .rv3HeroPlayOutline {
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
   display: grid;
-  flex: 0 0 22px;
+  flex: 0 0 24px;
   place-items: center;
   border: 1px solid currentColor;
   border-radius: 50%;
@@ -158,33 +186,31 @@ background-image:url('../../assets/herobg.png') ;
   outline-offset: 3px;
 }
 
-/* Trust indicators */
-
 .rv3HeroStats {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 17px;
-  margin-top: 27px;
+  margin-top: 23px;
 }
 
 .rv3HeroStat {
   min-width: 0;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 9px;
 }
 
 .rv3HeroStatFirst {
   padding-right: 17px;
-  border-right: 1px solid #b8d4d0;
+  border-right: 1px solid #c7dcd8;
 }
 
 .rv3HeroStatIcon {
-  width: 43px;
-  height: 43px;
-  flex: 0 0 43px;
+  width: 39px;
+  height: 39px;
   display: grid;
+  flex: 0 0 39px;
   place-items: center;
   border-radius: 50%;
   background: #dcefeb;
@@ -194,11 +220,11 @@ background-image:url('../../assets/herobg.png') ;
 .rv3HeroStatCopy {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 2px;
 }
 
 .rv3HeroStatCopy strong {
-  color: #103541;
+  color: var(--hero-ink);
   font-family: "Lora", Georgia, serif;
   font-size: 19px;
   line-height: 1.25;
@@ -207,29 +233,31 @@ background-image:url('../../assets/herobg.png') ;
 .rv3HeroStatCopy > span {
   color: #60747e;
   font-size: 12px;
-  line-height: 1.5;
+  line-height: 1.45;
 }
-
-/* Main physiotherapy image */
 
 .rv3HeroVisual {
   position: relative;
   align-self: stretch;
   min-width: 0;
-  min-height: 540px;
+  min-height: 0;
   display: flex;
   align-items: center;
-  padding: 12px 105px 15px 0;
+  justify-content: center;
+  padding: 8px 82px 8px 0;
 }
 
 .rv3HeroPhotoFrame {
   position: relative;
   width: 100%;
-  height: 530px;
+  height: min(54vh, 500px);
+  height: min(54svh, 500px);
+  min-height: 310px;
   overflow: hidden;
-  border-radius: 46% 46% 12px 12px;
+  border: 5px solid rgba(255, 255, 255, 0.8);
+  border-radius: 47% 47% 13px 13px;
   background: #d8ece8;
-  box-shadow: 0 18px 45px rgba(16, 53, 65, 0.08);
+  box-shadow: 0 18px 48px rgba(16, 53, 65, 0.12);
 }
 
 .rv3HeroImage {
@@ -238,93 +266,122 @@ background-image:url('../../assets/herobg.png') ;
   height: 100%;
   object-fit: cover;
   object-position: center;
-  transition: transform 0.65s ease;
+  transition: transform 0.7s ease;
 }
 
 .rv3HeroPhotoFrame:hover .rv3HeroImage {
-  transform: scale(1.025);
+  transform: scale(1.035);
 }
 
 .rv3HeroImageOverlay {
   position: absolute;
-  inset: 62% 0 0;
+  inset: 55% 0 0;
   pointer-events: none;
-  background: linear-gradient(to bottom, transparent, rgba(4, 52, 58, 0.14));
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(0, 43, 49, 0.36)
+  );
 }
 
-.rv3HeroStoryNote {
+.rv3HeroPhotoLabel {
   position: absolute;
-  top: 19%;
-  left: 7px;
+  right: 12px;
+  bottom: 12px;
+  left: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.93);
+  box-shadow: 0 5px 20px rgba(0, 43, 49, 0.1);
+  backdrop-filter: blur(12px);
+}
+
+.rv3HeroPhotoLabelIcon {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  flex: 0 0 36px;
+  place-items: center;
+  border-radius: 50%;
+  background: #dcefeb;
+  color: #087c77;
+}
+
+.rv3HeroPhotoLabel > span:last-child {
   display: flex;
   flex-direction: column;
-  color: #104b55;
-  font-family: "Lora", Georgia, serif;
-  font-size: clamp(15px, 1.5vw, 21px);
-  font-style: italic;
+  gap: 3px;
+}
+
+.rv3HeroPhotoLabel strong {
+  color: var(--hero-ink);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.rv3HeroPhotoLabel small {
+  color: #617580;
+  font-size: 12px;
   line-height: 1.4;
-  transform: rotate(-8deg);
 }
-
-.rv3HeroStoryNote span:nth-child(2) {
-  margin-left: 9px;
-}
-
-.rv3HeroStoryNote i {
-  width: 105px;
-  height: 13px;
-  margin-top: 5px;
-  border-top: 2px solid #247c7b;
-  border-radius: 50%;
-  transform: rotate(-11deg);
-}
-
-/* Floating cards */
 
 .rv3HeroFloatingCards {
   position: absolute;
   z-index: 4;
   top: 17%;
   right: 0;
-  width: 200px;
+  width: 188px;
   display: flex;
   flex-direction: column;
-  gap: 11px;
+  gap: 9px;
 }
 
 .rv3HeroFloatingCard {
-  min-height: 80px;
+  min-height: 69px;
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.96);
-  border-radius: 17px;
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
   background: rgba(255, 255, 255, 0.96);
-  box-shadow: 0 9px 26px rgba(16, 53, 65, 0.1);
+  box-shadow: 0 8px 25px rgba(16, 53, 65, 0.1);
   backdrop-filter: blur(12px);
 }
 
+.rv3HeroFloatingCard2 {
+  margin-left: 10px;
+}
+
+.rv3HeroFloatingCard3 {
+  margin-left: 2px;
+}
+
 .rv3HeroFloatingIcon {
-  width: 43px;
-  height: 43px;
-  flex: 0 0 43px;
+  width: 39px;
+  height: 39px;
   display: grid;
+  flex: 0 0 39px;
   place-items: center;
-  border-radius: 50%;
+  border-radius: 12px;
   background: #e4f2ef;
   color: #07545a;
 }
 
 .rv3HeroFloatingCopy {
   min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .rv3HeroFloatingCopy strong {
   display: block;
-  color: #103541;
+  color: var(--hero-ink);
   font-family: "Lora", Georgia, serif;
-  font-size: 18px;
+  font-size: 17px;
   line-height: 1.3;
 }
 
@@ -333,36 +390,31 @@ background-image:url('../../assets/herobg.png') ;
   margin-top: 3px;
   color: #617580;
   font-size: 12px;
-  line-height: 1.45;
+  line-height: 1.4;
 }
-
-/* How it works link */
 
 .rv3HeroSeeHow {
   position: absolute;
   z-index: 4;
   right: 0;
-  bottom: 26px;
+  bottom: 18px;
   display: flex;
   align-items: center;
   gap: 9px;
-  color: #103541;
-  font-size: 12px;
-  font-weight: 650;
-  line-height: 1.5;
+  color: var(--hero-ink);
   text-decoration: none;
 }
 
 .rv3HeroSeeHowIcon {
-  width: 47px;
-  height: 47px;
-  flex: 0 0 47px;
+  width: 43px;
+  height: 43px;
   display: grid;
+  flex: 0 0 43px;
   place-items: center;
   border-radius: 50%;
-  background: #08777a;
+  background: var(--hero-teal);
   color: #ffffff;
-  box-shadow: 0 8px 20px rgba(8, 119, 122, 0.22);
+  box-shadow: 0 7px 18px rgba(7, 137, 133, 0.22);
   transition: transform 0.25s ease;
 }
 
@@ -370,7 +422,30 @@ background-image:url('../../assets/herobg.png') ;
   transform: scale(1.06);
 }
 
-/* Optional image on left */
+.rv3HeroSeeHowText {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.rv3HeroSeeHowText strong {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.rv3HeroSeeHowText small {
+  color: #60747e;
+  font-size: 12px;
+}
+
+.rv3HeroSeeHow > svg {
+  color: var(--hero-teal);
+  transition: transform 0.25s ease;
+}
+
+.rv3HeroSeeHow:hover > svg {
+  transform: translateX(3px);
+}
 
 .rv3HeroImageLeft .rv3HeroContent {
   order: 2;
@@ -379,12 +454,17 @@ background-image:url('../../assets/herobg.png') ;
 .rv3HeroImageLeft .rv3HeroVisual {
   order: 1;
   padding-right: 0;
-  padding-left: 105px;
+  padding-left: 82px;
 }
 
 .rv3HeroImageLeft .rv3HeroFloatingCards {
   right: auto;
   left: 0;
+}
+
+.rv3HeroImageLeft .rv3HeroFloatingCard2 {
+  margin-right: 10px;
+  margin-left: 0;
 }
 
 .rv3HeroImageLeft .rv3HeroStoryNote {
@@ -397,34 +477,18 @@ background-image:url('../../assets/herobg.png') ;
   left: 0;
 }
 
-/* Benefits strip */
-
 .rv3HeroBenefits {
   position: relative;
   z-index: 5;
-  margin-top: -4px;
-  padding: 27px 0 19px;
+  flex-shrink: 0;
+  padding: 17px 0 14px;
   background: var(--hero-deep);
   color: #ffffff;
 }
 
-.rv3HeroBenefits::before {
-  content: "";
-  position: absolute;
-  top: -23px;
-  left: -3%;
-  width: 106%;
-  height: 45px;
-  border-radius: 50% 50% 0 0 / 80% 80% 0 0;
-  background: var(--hero-deep);
-  transform: rotate(-0.4deg);
-}
-
 .rv3HeroBenefitsInner {
-  position: relative;
-  z-index: 1;
-  width: calc(100% - 64px);
-  max-width: 1500px;
+  width: calc(100% - 48px);
+  max-width: 1400px;
   margin-inline: auto;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -433,11 +497,11 @@ background-image:url('../../assets/herobg.png') ;
 
 .rv3HeroBenefit {
   min-width: 0;
-  min-height: 62px;
+  min-height: 53px;
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 0 16px;
+  gap: 11px;
+  padding: 0 13px;
   border-right: 1px solid rgba(255, 255, 255, 0.2);
 }
 
@@ -451,13 +515,13 @@ background-image:url('../../assets/herobg.png') ;
 }
 
 .rv3HeroBenefitIcon {
-  width: 52px;
-  height: 52px;
-  flex: 0 0 52px;
+  width: 43px;
+  height: 43px;
   display: grid;
+  flex: 0 0 43px;
   place-items: center;
-  border-radius: 50%;
-  background: #086a70;
+  border-radius: 13px;
+  background: rgba(8, 137, 133, 0.34);
   color: #ffffff;
 }
 
@@ -468,9 +532,9 @@ background-image:url('../../assets/herobg.png') ;
 .rv3HeroBenefitCopy strong {
   display: block;
   color: #ffffff;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 650;
-  line-height: 1.5;
+  line-height: 1.4;
 }
 
 .rv3HeroBenefitCopy > span {
@@ -478,60 +542,87 @@ background-image:url('../../assets/herobg.png') ;
   margin-top: 3px;
   color: #d1e5e3;
   font-size: 12px;
-  line-height: 1.5;
+  line-height: 1.4;
 }
 
-/* Medium screens */
+@media (min-width: 1500px) {
+  .rv3HeroContainer {
+    gap: 42px;
+  }
+
+  .rv3HeroHeading {
+    font-size: 76px;
+  }
+
+  .rv3HeroVisual {
+    padding-right: 96px;
+  }
+
+  .rv3HeroImageLeft .rv3HeroVisual {
+    padding-right: 0;
+    padding-left: 96px;
+  }
+
+  .rv3HeroPhotoFrame {
+    height: min(56svh, 530px);
+  }
+}
 
 @media (max-width: 1100px) {
   .rv3HeroContainer {
     width: calc(100% - 36px);
-    min-height: 540px;
     grid-template-columns: minmax(0, 0.96fr) minmax(0, 1fr);
     gap: 17px;
   }
 
   .rv3HeroHeading {
-    font-size: clamp(45px, 5.2vw, 62px);
+    font-size: clamp(42px, 5vw, 59px);
     letter-spacing: -1.8px;
   }
 
   .rv3HeroDescription {
-    font-size: 15px;
+    font-size: 14px;
   }
 
   .rv3HeroVisual {
-    min-height: 450px;
-    padding-right: 75px;
+    padding-right: 65px;
+  }
+
+  .rv3HeroImageLeft .rv3HeroVisual {
+    padding-right: 0;
+    padding-left: 65px;
   }
 
   .rv3HeroPhotoFrame {
-    height: 430px;
+    height: min(50svh, 430px);
+    min-height: 290px;
   }
 
   .rv3HeroFloatingCards {
-    width: 158px;
+    width: 153px;
+    gap: 8px;
   }
 
   .rv3HeroFloatingCard {
-    min-height: 70px;
+    min-height: 61px;
     gap: 7px;
-    padding: 9px;
-    border-radius: 13px;
+    padding: 8px;
+    border-radius: 12px;
   }
 
   .rv3HeroFloatingIcon {
-    width: 35px;
-    height: 35px;
-    flex-basis: 35px;
+    width: 33px;
+    height: 33px;
+    flex-basis: 33px;
+  }
+
+  .rv3HeroFloatingIcon svg {
+    width: 19px;
+    height: 19px;
   }
 
   .rv3HeroFloatingCopy strong {
     font-size: 15px;
-  }
-
-  .rv3HeroImageLeft .rv3HeroVisual {
-    padding-left: 75px;
   }
 
   .rv3HeroBenefitsInner {
@@ -544,38 +635,44 @@ background-image:url('../../assets/herobg.png') ;
   }
 
   .rv3HeroBenefitIcon {
-    width: 42px;
-    height: 42px;
-    flex-basis: 42px;
+    width: 37px;
+    height: 37px;
+    flex-basis: 37px;
   }
 
   .rv3HeroBenefitCopy strong {
     font-size: 12px;
   }
-}
 
-/* Mobile */
+  .rv3HeroSeeHow > svg {
+    display: none;
+  }
+}
 
 @media (max-width: 760px) {
   .rv3Hero {
-    background-position: center top;
+    min-height: auto;
   }
 
   .rv3HeroBackground {
     background:
+      radial-gradient(
+        ellipse at 85% 36%,
+        rgba(216, 236, 232, 0.76),
+        transparent 46%
+      ),
       linear-gradient(
         180deg,
-        rgba(247, 250, 249, 0.9),
-        rgba(247, 250, 249, 0.62)
+        rgba(247, 250, 249, 0.98),
+        rgba(247, 250, 249, 0.92)
       );
   }
 
   .rv3HeroContainer {
     width: calc(100% - 32px);
-    min-height: auto;
     grid-template-columns: minmax(0, 1fr);
-    gap: 20px;
-    padding: 20px 0 26px;
+    gap: 15px;
+    padding: 20px 0;
   }
 
   .rv3HeroContent,
@@ -585,50 +682,51 @@ background-image:url('../../assets/herobg.png') ;
   }
 
   .rv3HeroEyebrow {
-    margin-bottom: 16px;
-    padding: 8px 11px;
+    margin-bottom: 14px;
+    padding: 7px 10px;
     font-size: 12px;
     letter-spacing: 0.3px;
   }
 
   .rv3HeroHeading {
-    font-size: clamp(43px, 9.4vw, 64px);
-    line-height: 1.04;
+    font-size: clamp(42px, 9vw, 62px);
+    line-height: 1.06;
     letter-spacing: -1.7px;
   }
 
   .rv3HeroDescription {
-    margin-top: 14px;
+    max-width: 560px;
+    margin-top: 12px;
     font-size: 14px;
-    line-height: 1.7;
+    line-height: 1.65;
   }
 
   .rv3HeroActions {
     gap: 9px;
-    margin-top: 18px;
+    margin-top: 17px;
   }
 
   .rv3HeroPrimaryButton,
   .rv3HeroSecondaryButton {
     min-height: 45px;
     gap: 7px;
-    padding-inline: 11px;
+    padding-inline: 12px;
     font-size: 12px;
   }
 
   .rv3HeroStats {
-    gap: 11px;
-    margin-top: 19px;
+    gap: 12px;
+    margin-top: 17px;
   }
 
   .rv3HeroStatFirst {
-    padding-right: 11px;
+    padding-right: 12px;
   }
 
   .rv3HeroStatIcon {
-    width: 36px;
-    height: 36px;
-    flex-basis: 36px;
+    width: 34px;
+    height: 34px;
+    flex-basis: 34px;
   }
 
   .rv3HeroStatCopy strong {
@@ -638,50 +736,68 @@ background-image:url('../../assets/herobg.png') ;
   .rv3HeroVisual,
   .rv3HeroImageLeft .rv3HeroVisual {
     order: 2;
-    min-height: 365px;
-    padding: 5px 48px 20px 0;
+    min-height: 350px;
+    padding: 4px 42px 22px 0;
   }
 
   .rv3HeroPhotoFrame {
-    height: clamp(300px, 83vw, 420px);
+    height: clamp(300px, 76vw, 400px);
+    min-height: 0;
+    border-width: 4px;
     border-radius: 43% 43% 12px 12px;
   }
 
-  .rv3HeroStoryNote {
-    top: 16%;
-    left: 2px;
-    font-size: 14px;
+  .rv3HeroPhotoLabel {
+    right: 8px;
+    bottom: 8px;
+    left: 8px;
+    gap: 8px;
+    padding: 9px;
   }
 
-  .rv3HeroStoryNote i {
-    width: 76px;
+  .rv3HeroPhotoLabelIcon {
+    width: 31px;
+    height: 31px;
+    flex-basis: 31px;
+  }
+
+  .rv3HeroPhotoLabel strong {
+    font-size: 12px;
+  }
+
+  .rv3HeroPhotoLabel small {
+    font-size: 12px;
   }
 
   .rv3HeroFloatingCards,
   .rv3HeroImageLeft .rv3HeroFloatingCards {
-    top: 15%;
+    top: 14%;
     right: 0;
     left: auto;
     width: 143px;
-    gap: 8px;
+    gap: 7px;
   }
 
   .rv3HeroFloatingCard {
-    min-height: 65px;
+    min-height: 59px;
     gap: 7px;
-    padding: 8px;
-    border-radius: 12px;
+    padding: 7px;
+  }
+
+  .rv3HeroFloatingCard2 {
+    margin-left: 5px;
   }
 
   .rv3HeroFloatingIcon {
-    width: 30px;
-    height: 30px;
-    flex-basis: 30px;
+    width: 29px;
+    height: 29px;
+    flex-basis: 29px;
+    border-radius: 9px;
   }
 
   .rv3HeroFloatingIcon svg {
-    width: 19px;
-    height: 19px;
+    width: 18px;
+    height: 18px;
   }
 
   .rv3HeroFloatingCopy strong {
@@ -695,50 +811,41 @@ background-image:url('../../assets/herobg.png') ;
   .rv3HeroSeeHow,
   .rv3HeroImageLeft .rv3HeroSeeHow {
     right: 0;
-    bottom: 22px;
+    bottom: 0;
     left: auto;
     gap: 7px;
   }
 
   .rv3HeroSeeHowIcon {
-    width: 40px;
-    height: 40px;
-    flex-basis: 40px;
-  }
-
-  .rv3HeroSeeHow > svg {
-    display: none;
+    width: 37px;
+    height: 37px;
+    flex-basis: 37px;
   }
 
   .rv3HeroBenefits {
-    margin-top: 0;
-    padding: 23px 0 20px;
-  }
-
-  .rv3HeroBenefits::before {
-    top: -16px;
-    height: 32px;
+    padding: 17px 0;
   }
 
   .rv3HeroBenefitsInner {
     width: calc(100% - 28px);
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 13px 5px;
+    gap: 12px 5px;
   }
 
   .rv3HeroBenefit,
   .rv3HeroBenefit:first-child,
   .rv3HeroBenefit:last-child {
-    min-height: 60px;
+    min-height: 53px;
     gap: 8px;
-    padding: 5px;
+    padding: 4px;
     border-right: 0;
   }
 
   .rv3HeroBenefitIcon {
-    width: 39px;
-    height: 39px;
-    flex-basis: 39px;
+    width: 35px;
+    height: 35px;
+    flex-basis: 35px;
+    border-radius: 10px;
   }
 
   .rv3HeroBenefitIcon svg {
@@ -774,19 +881,32 @@ background-image:url('../../assets/herobg.png') ;
 
   .rv3HeroVisual,
   .rv3HeroImageLeft .rv3HeroVisual {
-    padding-right: 40px;
+    min-height: 325px;
+    padding-right: 34px;
+  }
+
+  .rv3HeroPhotoFrame {
+    height: 300px;
   }
 
   .rv3HeroFloatingCards,
   .rv3HeroImageLeft .rv3HeroFloatingCards {
-    width: 133px;
+    width: 128px;
+  }
+
+  .rv3HeroFloatingCard {
+    gap: 6px;
+    padding: 6px;
+  }
+
+  .rv3HeroFloatingCopy strong {
+    font-size: 13px;
   }
 
   .rv3HeroBenefit,
   .rv3HeroBenefit:first-child,
   .rv3HeroBenefit:last-child {
     align-items: flex-start;
-    flex-direction: column;
   }
 }
 
@@ -794,80 +914,8 @@ background-image:url('../../assets/herobg.png') ;
   .rv3HeroImage,
   .rv3HeroPrimaryButton,
   .rv3HeroSecondaryButton,
-  .rv3HeroSeeHowIcon {
+  .rv3HeroSeeHowIcon,
+  .rv3HeroSeeHow > svg {
     transition: none;
   }
 }
-
-
-/* One viewport hero */
-
-.rv3Hero {
-  min-height: calc(100vh - 76px);
-  min-height: calc(100svh - 76px);
-  display: flex;
-  flex-direction: column;
-}
-
-.rv3HeroContainer {
-  flex: 1;
-  min-height: 0;
-  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-  padding-block: 12px;
-  gap: 20px;
-}
-
-.rv3HeroContent {
-  padding-block: 8px;
-}
-
-.rv3HeroHeading {
-  font-size: clamp(48px, 4.7vw, 76px);
-  line-height: 1;
-}
-
-.rv3HeroVisual {
-  min-height: 0;
-  padding-block: 8px;
-}
-
-.rv3HeroPhotoFrame {
-  height: min(55vh, 510px);
-  height: min(55svh, 510px);
-}
-
-.rv3HeroBenefits {
-  flex-shrink: 0;
-  padding-block: 18px 14px;
-}
-
-.rv3HeroBenefits::before {
-  top: -14px;
-  height: 25px;
-}
-
-@media (max-width: 760px) {
-  .rv3Hero {
-    min-height: auto;
-  }
-
-  .rv3HeroContainer {
-    flex: initial;
-    min-height: auto;
-    grid-template-columns: minmax(0, 1fr);
-    padding-block: 20px;
-  }
-
-  .rv3HeroVisual {
-    min-height: 340px;
-  }
-
-  .rv3HeroPhotoFrame {
-    height: clamp(300px, 85vw, 420px);
-  }
-
-  .rv3HeroBenefits {
-    padding-block: 22px 18px;
-  }
-}
-

@@ -21,12 +21,20 @@ import {
   MoveUpRight,
   Clock3,
   CircleCheck,
+  MessageCircle
 } from "lucide-react";
 
 import HeroSection from "../../components/HeroSection/HeroSection";
 import CTASection from "../../components/CTASection/CTASection";
 import "./Home.css";
-
+import services1 from '../../assets/services1.jpeg'
+import services2 from '../../assets/services2.jpeg'
+import services3 from '../../assets/services3.jpeg'
+import services4 from '../../assets/services4.jpeg'
+import approch from '../../assets/approch.png'
+import stroy1 from '../../assets/stroy1.png'
+import stroy2 from '../../assets/stroy2.png'
+import faqimage from '../../assets/faqimage.png'
 const services = [
   {
     number: "01",
@@ -35,7 +43,7 @@ const services = [
       "Personalised care to help you manage discomfort and move with greater confidence.",
     icon: HeartPulse,
     image:
-      "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=900&q=85",
+      services1,
     link: "/services",
   },
   {
@@ -44,8 +52,7 @@ const services = [
     description:
       "Build strength, improve movement and work towards returning to the activities you love.",
     icon: Dumbbell,
-    image:
-      "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=900&q=85",
+    image:services2,
     link: "/services",
   },
   {
@@ -55,7 +62,7 @@ const services = [
       "Improve flexibility, balance and everyday movement with guided physiotherapy.",
     icon: Footprints,
     image:
-      "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=900&q=85",
+      services3,
     link: "/services",
   },
   {
@@ -65,7 +72,7 @@ const services = [
       "A care plan shaped around your goals, your routine and your individual needs.",
     icon: HandHeart,
     image:
-      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=900&q=85",
+      services4,
     link: "/services",
   },
 ];
@@ -209,50 +216,76 @@ function Home() {
       />
 
       
+
 <section className="rv3TrustStrip">
+  <div className="rv3TrustBackground" aria-hidden="true">
+    <span className="rv3TrustOrb rv3TrustOrbOne" />
+    <span className="rv3TrustOrb rv3TrustOrbTwo" />
+    <span className="rv3TrustPattern" />
+  </div>
+
   <div className="rv3TrustInner">
     <div className="rv3TrustIntro">
       <span className="rv3TrustMark">
-        <HeartPulse size={23} strokeWidth={1.8} />
+        <HeartPulse size={27} strokeWidth={1.7} />
       </span>
 
       <div className="rv3TrustIntroText">
-        <span className="rv3TrustEyebrow">THE REHABICS DIFFERENCE</span>
-        <strong>Movement matters.</strong>
-        <span>Care that starts with you</span>
+        <span className="rv3TrustEyebrow">
+          THE REHABICS DIFFERENCE
+        </span>
+
+        <h2>Movement matters.</h2>
+
+        <p>Care that starts with you</p>
       </div>
     </div>
 
-    <div className="rv3TrustDivider" />
+    <div className="rv3TrustItems">
+      <article className="rv3TrustItem">
+        <span className="rv3TrustItemIcon">
+          <ShieldCheck size={25} strokeWidth={1.7} />
+        </span>
 
-    <div className="rv3TrustItem">
-      <span className="rv3TrustItemIcon">
-        <ShieldCheck size={21} strokeWidth={1.8} />
-      </span>
-      <div>
-        <strong>Personalised care</strong>
-        <span>Built around your needs</span>
-      </div>
-    </div>
+        <div className="rv3TrustItemText">
+          <h3>Personalised care</h3>
+          <p>Built around your needs</p>
+        </div>
 
-    <div className="rv3TrustItem">
-      <span className="rv3TrustItemIcon">
-        <Activity size={21} strokeWidth={1.8} />
-      </span>
-      <div>
-        <strong>Movement focused</strong>
-        <span>Progress at your pace</span>
-      </div>
-    </div>
+        <span className="rv3TrustArrow">
+          <ArrowUpRight size={19} />
+        </span>
+      </article>
 
-    <div className="rv3TrustItem">
-      <span className="rv3TrustItemIcon">
-        <HandHeart size={21} strokeWidth={1.8} />
-      </span>
-      <div>
-        <strong>Supportive approach</strong>
-        <span>Your goals come first</span>
-      </div>
+      <article className="rv3TrustItem">
+        <span className="rv3TrustItemIcon">
+          <Activity size={25} strokeWidth={1.7} />
+        </span>
+
+        <div className="rv3TrustItemText">
+          <h3>Movement focused</h3>
+          <p>Progress at your pace</p>
+        </div>
+
+        <span className="rv3TrustArrow">
+          <ArrowUpRight size={19} />
+        </span>
+      </article>
+
+      <article className="rv3TrustItem">
+        <span className="rv3TrustItemIcon">
+          <HandHeart size={25} strokeWidth={1.7} />
+        </span>
+
+        <div className="rv3TrustItemText">
+          <h3>Supportive approach</h3>
+          <p>Your goals come first</p>
+        </div>
+
+        <span className="rv3TrustArrow">
+          <ArrowUpRight size={19} />
+        </span>
+      </article>
     </div>
   </div>
 </section>
@@ -314,7 +347,7 @@ function Home() {
           <motion.div className="rv3WhyVisual" {...reveal}>
             <div className="rv3WhyPhoto">
               <img
-                src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1200&q=85"
+                src={approch}
                 alt="Physiotherapy professional supporting a patient"
                 loading="lazy"
               />
@@ -460,7 +493,7 @@ function Home() {
           <motion.div className="rv3StoryVisual" {...reveal}>
             <div className="rv3StoryMainImage">
               <img
-                src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1100&q=85"
+                src={stroy1}
                 alt="Person practising a gentle mobility exercise"
                 loading="lazy"
               />
@@ -471,7 +504,7 @@ function Home() {
             </div>
             <div className="rv3StorySmallImage">
               <img
-                src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=500&q=85"
+                src={stroy2}
                 alt="A calm movement and stretching practice"
                 loading="lazy"
               />
@@ -484,66 +517,91 @@ function Home() {
         </div>
       </section>
 
-      <section className="rv3Faq rv3Section">
-        <div className="rv3FaqPattern" />
-        <div className="rv3Container rv3FaqGrid">
-          <motion.div className="rv3FaqIntro" {...reveal}>
-            <span className="rv3Eyebrow">
-              <span className="rv3EyebrowDot" />
-              GOOD TO KNOW
-            </span>
-            <h2>
-              Questions are a
-              <br />
-              <span>good place to start.</span>
-            </h2>
-            <p>
-              Explore a few common questions about physiotherapy and taking
-              your first step with Rehabics.
-            </p>
-            <div className="rv3FaqGraphic">
-              <div className="rv3FaqGraphicCircle">
-                <CircleHelpIcon />
-              </div>
-              <span className="rv3FaqGraphicDot rv3FaqDotOne" />
-              <span className="rv3FaqGraphicDot rv3FaqDotTwo" />
-              <span className="rv3FaqGraphicDot rv3FaqDotThree" />
-              <div className="rv3FaqGraphicText">We are here to help</div>
-            </div>
-          </motion.div>
+     
+<section className="rv3Faq rv3Section">
+  <div className="rv3FaqPattern" />
 
-          <motion.div className="rv3FaqList" {...reveal}>
-            {faqs.map((faq, index) => {
-              const isOpen = openFaq === index;
+  <div className="rv3Container rv3FaqGrid">
+    <motion.div className="rv3FaqIntro" {...reveal}>
+      <span className="rv3Eyebrow">
+        <span className="rv3EyebrowDot" />
+        GOOD TO KNOW
+      </span>
 
-              return (
-                <div
-                  className={`rv3FaqItem ${isOpen ? "isOpen" : ""}`}
-                  key={faq.question}
-                >
-                  <button
-                    className="rv3FaqQuestion"
-                    type="button"
-                    aria-expanded={isOpen}
-                    onClick={() => setOpenFaq(isOpen ? -1 : index)}
-                  >
-                    <span className="rv3FaqNumber">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <span>{faq.question}</span>
-                    <span className="rv3FaqToggle">
-                      {isOpen ? <Minus size={18} /> : <Plus size={18} />}
-                    </span>
-                  </button>
-                  <div className="rv3FaqAnswerWrap">
-                    <p>{faq.answer}</p>
-                  </div>
-                </div>
-              );
-            })}
-          </motion.div>
+      <h2>
+        Questions are a
+        <br />
+        <span>good place to start.</span>
+      </h2>
+
+      <p>
+        Explore a few common questions about physiotherapy
+        and taking your first step with Rehabics.
+      </p>
+
+      <div className="rv3FaqGraphic">
+        <img
+          className="rv3FaqImage"
+          src={faqimage}
+          alt="Physiotherapy guidance and support"
+          loading="lazy"
+        />
+
+        <div className="rv3FaqImageOverlay">
+          <span className="rv3FaqImageIcon">
+            <MessageCircle size={20} />
+          </span>
+
+          <div>
+            <strong>We are here to help</strong>
+            <span>Your questions matter to us.</span>
+          </div>
         </div>
-      </section>
+      </div>
+    </motion.div>
+
+    <motion.div className="rv3FaqList" {...reveal}>
+      {faqs.map((faq, index) => {
+        const isOpen = openFaq === index;
+
+        return (
+          <div
+            className={`rv3FaqItem ${isOpen ? "isOpen" : ""}`}
+            key={faq.question}
+          >
+            <button
+              className="rv3FaqQuestion"
+              type="button"
+              aria-expanded={isOpen}
+              onClick={() => setOpenFaq(isOpen ? -1 : index)}
+            >
+              <span className="rv3FaqNumber">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+
+              <span className="rv3FaqQuestionText">
+                {faq.question}
+              </span>
+
+              <span className="rv3FaqToggle">
+                {isOpen ? (
+                  <Minus size={18} />
+                ) : (
+                  <Plus size={18} />
+                )}
+              </span>
+            </button>
+
+            <div className="rv3FaqAnswerWrap">
+              <p>{faq.answer}</p>
+            </div>
+          </div>
+        );
+      })}
+    </motion.div>
+  </div>
+</section>
+
 
       <section className="rv3FinalCTA">
         <div className="rv3Container">

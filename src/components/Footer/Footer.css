@@ -1,262 +1,439 @@
+
 .rv3Footer {
-  margin-top: 20px;
-  color: #eaf4f1;
-  background:
-    radial-gradient(
-      ellipse at 12% 0%,
-      rgba(36, 124, 123, 0.24),
-      transparent 42%
-    ),
-    #123c46;
+  --rv3-footer-deep: #003f47;
+  --rv3-footer-ink: #103541;
+  --rv3-footer-teal: #078985;
+  --rv3-footer-soft: #d8ece8;
+  --rv3-footer-paper: #f7faf9;
+
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  color: var(--rv3-footer-paper);
+  background: var(--rv3-footer-deep);
+  font-family: "DM Sans", sans-serif;
 }
 
 .rv3FooterMain {
-  display: grid;
-  grid-template-columns: 1.45fr 0.8fr 0.95fr 1.15fr;
-  gap: 28px;
-  padding-block: 20px;
+  position: relative;
+  padding: 20px 0;
+  background:
+    radial-gradient(
+      ellipse at 0% 10%,
+      rgba(7, 137, 133, 0.18),
+      transparent 38%
+    ),
+    radial-gradient(
+      ellipse at 100% 100%,
+      rgba(216, 236, 232, 0.06),
+      transparent 35%
+    ),
+    var(--rv3-footer-deep);
 }
 
-.rv3FooterBrand {
-  max-width: 340px;
+.rv3FooterMain::before {
+  position: absolute;
+  top: 0;
+  right: 32px;
+  left: 32px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(216, 236, 232, 0.3),
+    transparent
+  );
+  content: "";
+}
+
+.rv3FooterContainer {
+  position: relative;
+  display: grid;
+  grid-template-columns:
+    minmax(220px, 1.35fr)
+    minmax(120px, 0.72fr)
+    minmax(155px, 0.95fr)
+    minmax(220px, 1.15fr);
+  align-items: start;
+  gap: clamp(20px, 3vw, 44px);
+  width: calc(100% - 64px);
+  max-width: 1380px;
+  margin: 0 auto;
+}
+
+.rv3FooterBrand,
+.rv3FooterColumn,
+.rv3FooterContact {
+  min-width: 0;
 }
 
 .rv3FooterLogo {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 11px;
   color: #ffffff;
-  font-family: "Lora", serif;
-  font-size: 28px;
-  font-weight: 700;
-  transition: color 200ms ease;
+  text-decoration: none;
 }
 
 .rv3FooterLogoIcon {
   width: 44px;
   height: 44px;
   display: grid;
+  flex: 0 0 44px;
   place-items: center;
-  color: #123c46;
-  background: #d8ece8;
-  border-radius: 14px;
+  border: 1px solid rgba(216, 236, 232, 0.3);
+  border-radius: 13px;
+  color: #c8e9e2;
+  background: rgba(216, 236, 232, 0.07);
   transition:
-    transform 250ms ease,
-    background 250ms ease;
+    background 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease;
 }
 
 .rv3FooterLogo:hover .rv3FooterLogoIcon {
-  transform: rotate(-5deg) scale(1.05);
-  background: #ffffff;
+  color: #ffffff;
+  border-color: var(--rv3-footer-teal);
+  background: var(--rv3-footer-teal);
+}
+
+.rv3FooterLogoName {
+  font-family: "Lora", Georgia, serif;
+  font-size: 31px;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -1px;
+}
+
+.rv3FooterTagline {
+  margin: 9px 0 0;
+  color: #91c9c0;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.6;
+  letter-spacing: 0.9px;
 }
 
 .rv3FooterDescription {
-  margin-top: 14px;
-  color: #c2d6d4;
+  max-width: 350px;
+  margin: 14px 0 0;
+  color: #c5d9d7;
   font-size: 13px;
   line-height: 1.8;
+}
+
+.rv3FooterSignature {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 12px;
+}
+
+.rv3FooterSignature > span {
+  width: 25px;
+  height: 1px;
+  flex: 0 0 25px;
+  background: #66bdb0;
+}
+
+.rv3FooterSignature p {
+  margin: 0;
+  color: #e0efed;
+  font-family: "Lora", Georgia, serif;
+  font-size: 13px;
+  font-style: italic;
+  line-height: 1.6;
 }
 
 .rv3FooterSocials {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-top: 17px;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 16px;
 }
 
-.rv3FooterSocials a {
-  width: 40px;
-  height: 40px;
-  display: grid;
-  place-items: center;
-  color: #eaf4f1;
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 12px;
+.rv3FooterSocial {
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  flex: 0 0 36px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(216, 236, 232, 0.23);
+  border-radius: 50%;
+  color: #d8ece8;
+  background: rgba(255, 255, 255, 0.035);
+  text-decoration: none;
   transition:
-    color 220ms ease,
-    background 220ms ease,
-    border-color 220ms ease,
-    transform 220ms ease;
+    color 0.25s ease,
+    background 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
 }
 
-.rv3FooterSocials a svg {
-  width: 18px;
-  height: 18px;
-  transition: transform 220ms ease;
+.rv3FooterSocial svg {
+  display: block;
+  width: 17px;
+  height: 17px;
 }
 
-.rv3FooterSocials a:hover {
-  color: #123c46;
-  background: #d8ece8;
-  border-color: #d8ece8;
+.rv3FooterSocial:hover {
   transform: translateY(-3px);
+  border-color: var(--rv3-footer-teal);
+  color: #ffffff;
+  background: var(--rv3-footer-teal);
 }
 
-.rv3FooterSocials a:hover svg {
-  transform: scale(1.12);
+.rv3FooterHeading {
+  position: relative;
+  width: fit-content;
+  margin: 4px 0 18px;
+  padding-bottom: 10px;
+  color: #ffffff;
+  font-family: "Lora", Georgia, serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.5;
 }
 
-.rv3FooterColumn {
+.rv3FooterHeading::after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 30px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--rv3-footer-teal);
+  content: "";
+  transition: width 0.25s ease;
+}
+
+.rv3FooterColumn:hover .rv3FooterHeading::after,
+.rv3FooterContact:hover .rv3FooterHeading::after {
+  width: 46px;
+}
+
+.rv3FooterLinks {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 12px;
+  gap: 11px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.rv3FooterColumn h3 {
-  margin-bottom: 4px;
-  color: #ffffff;
-  font-family: "Inter", sans-serif;
-  font-size: 15px;
-  font-weight: 700;
+.rv3FooterLinks li {
+  min-width: 0;
 }
 
-.rv3FooterColumn > a {
-  color: #c2d6d4;
-  font-size: 13px;
-  line-height: 1.6;
-  transition:
-    color 200ms ease,
-    transform 200ms ease;
-}
-
-.rv3FooterColumn > a:hover {
-  color: #ffffff;
-  transform: translateX(3px);
-}
-
-.rv3FooterContact > a,
-.rv3FooterContactItem {
+.rv3FooterLinks a {
   display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  color: #c2d6d4;
+  align-items: center;
+  justify-content: space-between;
+  gap: 7px;
+  color: #c5d9d7;
   font-size: 12px;
   line-height: 1.7;
+  text-decoration: none;
+  transition:
+    color 0.2s ease,
+    padding 0.2s ease;
+}
+
+.rv3FooterLinks a span {
+  min-width: 0;
+}
+
+.rv3FooterLinks a svg {
+  flex: 0 0 auto;
+  opacity: 0;
+  transform: translate(-3px, 3px);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.rv3FooterLinks a:hover {
+  padding-left: 3px;
+  color: #ffffff;
+}
+
+.rv3FooterLinks a:hover svg {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+.rv3FooterContactIntro {
+  margin: 0 0 12px;
+  color: #c5d9d7;
+  font-size: 12px;
+  line-height: 1.75;
+}
+
+.rv3FooterContactList {
+  display: flex;
+  flex-direction: column;
+}
+
+.rv3FooterContactItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(216, 236, 232, 0.13);
+  color: #ffffff;
+  text-decoration: none;
+  transition: border-color 0.25s ease;
+}
+
+.rv3FooterContactItem:last-child {
+  border-bottom: 0;
+}
+
+.rv3FooterContactIcon {
+  width: 35px;
+  height: 35px;
+  display: grid;
+  flex: 0 0 35px;
+  place-items: center;
+  border: 1px solid rgba(216, 236, 232, 0.2);
+  border-radius: 10px;
+  color: #a8d9d0;
+  background: rgba(216, 236, 232, 0.06);
+  transition:
+    color 0.25s ease,
+    background 0.25s ease;
+}
+
+.rv3FooterContactCopy {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.rv3FooterContactCopy small {
+  color: #8ec6bd;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.rv3FooterContactCopy > span {
+  color: #e2eeec;
+  font-size: 12px;
+  line-height: 1.6;
   overflow-wrap: anywhere;
 }
 
-.rv3FooterContact > a svg,
-.rv3FooterContactItem svg {
-  flex-shrink: 0;
-  margin-top: 3px;
-  color: #9dd9ce;
-}
-
-.rv3FooterContact > a:hover {
-  color: #ffffff;
-}
-
-.rv3FooterCTA {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  padding-block: 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.14);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
-}
-
-.rv3FooterEyebrow {
-  color: #9dd9ce;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 1.2px;
-}
-
-.rv3FooterCTA h2 {
-  margin-top: 7px;
-  color: #ffffff;
-  font-size: clamp(25px, 3vw, 34px);
-}
-
-.rv3FooterCTA p {
-  margin-top: 7px;
-  color: #c2d6d4;
-  font-size: 13px;
-}
-
-.rv3FooterCTAButton {
-  min-height: 46px;
-  padding: 10px 18px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  flex-shrink: 0;
-  color: #123c46;
-  background: #d8ece8;
-  border: 1px solid #d8ece8;
-  border-radius: 999px;
-  font-size: 13px;
-  font-weight: 700;
+.rv3FooterContactArrow {
+  flex: 0 0 auto;
+  color: #9ccfc7;
+  opacity: 0;
+  transform: translateX(-3px);
   transition:
-    background 220ms ease,
-    transform 220ms ease,
-    box-shadow 220ms ease;
+    opacity 0.2s ease,
+    transform 0.2s ease;
 }
 
-.rv3FooterCTAButton:hover {
-  background: #ffffff;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+.rv3FooterContactItem:hover {
+  border-bottom-color: rgba(142, 198, 189, 0.4);
 }
 
-.rv3FooterCTAButton svg {
-  transition: transform 220ms ease;
+.rv3FooterContactItem:hover .rv3FooterContactIcon {
+  color: #ffffff;
+  background: var(--rv3-footer-teal);
 }
 
-.rv3FooterCTAButton:hover svg {
-  transform: translate(2px, -2px);
+.rv3FooterContactItem:hover .rv3FooterContactArrow {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .rv3FooterBottom {
-  background: rgba(0, 0, 0, 0.12);
+  border-top: 1px solid rgba(216, 236, 232, 0.15);
+  background: #002f36;
 }
 
 .rv3FooterBottomInner {
-  min-height: 58px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 15px;
-  padding-block: 10px;
+  gap: 12px 20px;
+  width: calc(100% - 64px);
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: 13px 0;
 }
 
-.rv3FooterBottomInner p,
-.rv3FooterLegal a {
-  color: #c2d6d4;
+.rv3FooterCopyright {
+  margin: 0;
+  color: #b9cfcd;
   font-size: 12px;
+  line-height: 1.7;
+}
+
+.rv3FooterValues {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 9px;
+  color: #cbdedb;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.rv3FooterValues i {
+  width: 4px;
+  height: 4px;
+  flex: 0 0 4px;
+  border-radius: 50%;
+  background: #53b2a5;
 }
 
 .rv3FooterLegal {
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
   gap: 16px;
 }
 
 .rv3FooterLegal a {
-  transition: color 200ms ease;
+  color: #b9cfcd;
+  font-size: 12px;
+  line-height: 1.7;
+  text-decoration: none;
+  transition: color 0.2s ease;
 }
 
 .rv3FooterLegal a:hover {
   color: #ffffff;
 }
 
-.rv3FooterMade {
-  text-align: right;
+.rv3Footer a:focus-visible {
+  outline: 2px solid #a4ddd4;
+  outline-offset: 4px;
 }
 
-@media (max-width: 1000px) {
-  .rv3FooterMain {
-    grid-template-columns: 1.2fr 1fr 1fr;
+@media (max-width: 1100px) {
+  .rv3FooterContainer {
+    grid-template-columns:
+      minmax(200px, 1.2fr)
+      minmax(130px, 0.8fr)
+      minmax(155px, 0.9fr);
     gap: 25px;
   }
 
   .rv3FooterBrand {
     grid-column: 1 / -1;
-    max-width: 470px;
+    max-width: 570px;
+  }
+
+  .rv3FooterContact {
+    grid-column: 2 / 4;
   }
 
   .rv3FooterBottomInner {
@@ -264,43 +441,95 @@
   }
 }
 
-@media (max-width: 650px) {
+@media (max-width: 700px) {
   .rv3FooterMain {
+    padding: 20px 0;
+  }
+
+  .rv3FooterContainer {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 25px 18px;
+    width: calc(100% - 32px);
   }
 
   .rv3FooterBrand {
     grid-column: 1 / -1;
   }
 
-  .rv3FooterCTA {
+  .rv3FooterColumn {
+    grid-column: auto;
+  }
+
+  .rv3FooterContact {
+    grid-column: 1 / -1;
+  }
+
+  .rv3FooterDescription {
+    max-width: 450px;
+  }
+
+  .rv3FooterHeading {
+    margin-bottom: 14px;
+    font-size: 17px;
+  }
+
+  .rv3FooterLinks {
+    gap: 12px;
+  }
+
+  .rv3FooterLinks a {
     align-items: flex-start;
-    flex-direction: column;
+  }
+
+  .rv3FooterLinks a svg {
+    display: none;
+  }
+
+  .rv3FooterContactList {
+    gap: 2px;
   }
 
   .rv3FooterBottomInner {
-    align-items: flex-start;
     flex-direction: column;
-    gap: 10px;
+    align-items: flex-start;
+    gap: 9px;
+    width: calc(100% - 32px);
+    padding: 13px 0;
   }
 
-  .rv3FooterMade {
-    text-align: left;
-  }
-
-  .rv3FooterLegal {
-    gap: 12px;
+  .rv3FooterValues {
+    justify-content: flex-start;
   }
 }
 
-@media (max-width: 380px) {
-  .rv3FooterMain {
-    grid-template-columns: 1fr;
+@media (max-width: 390px) {
+  .rv3FooterContainer {
+    gap: 23px 12px;
+    width: calc(100% - 24px);
   }
 
-  .rv3FooterBrand {
-    grid-column: auto;
+  .rv3FooterBottomInner {
+    width: calc(100% - 24px);
+  }
+
+  .rv3FooterLogoName {
+    font-size: 28px;
+  }
+
+  .rv3FooterTagline {
+    letter-spacing: 0.65px;
+  }
+
+  .rv3FooterHeading {
+    font-size: 16px;
+  }
+
+  .rv3FooterLinks a {
+    overflow-wrap: anywhere;
+  }
+
+  .rv3FooterLegal {
+    gap: 13px;
   }
 }
 
@@ -308,7 +537,7 @@
   .rv3Footer *,
   .rv3Footer *::before,
   .rv3Footer *::after {
-    transition-duration: 0.01ms !important;
-    animation-duration: 0.01ms !important;
+    animation: none !important;
+    transition: none !important;
   }
 }

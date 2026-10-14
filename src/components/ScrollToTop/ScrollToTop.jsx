@@ -1,16 +1,23 @@
+
 import { useEffect, useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+import { ArrowUp } from "lucide-react";
 import "./ScrollToTop.css";
 
 export default function ScrollToTop() {
   const [visible, setVisible] = useState(false);
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
     const handleScroll = () => {
       setVisible(window.scrollY > 300);
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
+
+    window.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -20,32 +27,35 @@ export default function ScrollToTop() {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth",
+      behavior: reduceMotion ? "auto" : "smooth",
     });
   };
 
   return (
-    <button
+    <motion.button
       type="button"
-      className={`scroll-top-button ${visible ? "scroll-top-visible" : ""}`}
+      className="rv3ScrollTop"
       onClick={scrollToTop}
       aria-label="Scroll to top"
-      aria-hidden={!visible}
+      title="Back to top"
+      initial={false}
+      animate={
+        visible
+          ? { opacity: 1, y: 0, scale: 1 }
+          : { opacity: 0, y: 12, scale: 0.9 }
+      }
+      transition={{
+        duration: reduceMotion ? 0 : 0.22,
+        ease: "easeOut",
+      }}
+      style={{
+        pointerEvents: visible ? "auto" : "none",
+      }}
       tabIndex={visible ? 0 : -1}
+      whileHover={visible ? { y: -3 } : {}}
+      whileTap={visible ? { scale: 0.94 } : {}}
     >
-      <svg
-        width="22"
-        height="22"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        aria-hidden="true"
-      >
-        <path d="m18 15-6-6-6 6" />
-      </svg>
-    </button>
+      <ArrowUp size={22} strokeWidth={2} />
+    </motion.button>
   );
 }
